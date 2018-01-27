@@ -1,14 +1,14 @@
-import React from 'react'
-import { Alert } from 'react-native'
-import PropTypes from 'prop-types'
-import { Container, H1, P, Button } from 'components'
-import { compose, withState, withHandlers, lifecycle } from 'recompose'
+import React from 'react';
+import { Alert } from 'react-native';
+import PropTypes from 'prop-types';
+import { Container, H1, P, Button } from 'components';
+import { compose, withState, withHandlers, lifecycle } from 'recompose';
 
 
 export const NESTED_SCREEN_B = {
   screen: 'app.NestedScreenB',
   title: 'Nested Screen B',
-}
+};
 
 const NestedScreenB = ({
   handlePopToRoot,
@@ -34,7 +34,7 @@ const NestedScreenB = ({
       <Button onPress={handleShowAlertButton}>SHOW Top Right Button</Button>
     }
   </Container>
-)
+);
 
 NestedScreenB.propTypes = {
   navigator: PropTypes.shape({ // eslint-disable-line
@@ -44,7 +44,7 @@ NestedScreenB.propTypes = {
   handleShowAlertButton: PropTypes.func.isRequired,
   handleHideAlertButton: PropTypes.func.isRequired,
   handlePopToRoot: PropTypes.func.isRequired,
-}
+};
 
 const enhance = compose(
   withState('shouldShowAlertButton', 'setShouldShowAlertButton', false),
@@ -58,15 +58,15 @@ const enhance = compose(
           },
         ],
         animated: true,
-      })
-      setShouldShowAlertButton(true)
+      });
+      setShouldShowAlertButton(true);
     },
     handleHideAlertButton: ({ setShouldShowAlertButton, navigator }) => () => {
       navigator.setButtons({
         rightButtons: [],
         animated: true,
-      })
-      setShouldShowAlertButton(false)
+      });
+      setShouldShowAlertButton(false);
     },
     handlePopToRoot: ({ navigator }) => () => navigator.popToRoot(),
   }),
@@ -74,11 +74,11 @@ const enhance = compose(
     componentDidMount() {
       this.props.navigator.setOnNavigatorEvent((event) => {
         if (event.type === 'NavBarButtonPress' && event.id === 'nestedScreenBAlertButton') {
-          Alert.alert('Yay it works!')
+          Alert.alert('Yay it works!');
         }
-      })
+      });
     },
   }),
-)
+);
 
-export default enhance(NestedScreenB)
+export default enhance(NestedScreenB);

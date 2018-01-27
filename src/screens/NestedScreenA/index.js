@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Container, H1, P, Button } from 'components'
-import { compose, withHandlers } from 'recompose'
-import { NESTED_SCREEN_B } from 'screens/NestedScreenB'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, H1, P, Button } from 'components';
+import { compose, withHandlers } from 'recompose';
+import { NESTED_SCREEN_B } from 'screens/NestedScreenB';
 
 
 export const NESTED_SCREEN_A = {
   screen: 'app.NestedScreenA',
   title: 'Nested Screen A',
-}
+};
 
 const NestedScreenA = ({ handleOpenScreenB }) => (
   <Container>
@@ -20,19 +20,17 @@ const NestedScreenA = ({ handleOpenScreenB }) => (
     <P>But you can go even deeper!</P>
     <Button onPress={handleOpenScreenB}>Open Nested Screen B</Button>
   </Container>
-)
+);
 
 NestedScreenA.propTypes = {
   navigator: PropTypes.shape({ // eslint-disable-line
     push: PropTypes.func,
   }).isRequired,
   handleOpenScreenB: PropTypes.func.isRequired,
-}
+};
 
-const enhance = compose(
-  withHandlers({
-    handleOpenScreenB: ({ navigator }) => () => navigator.push(NESTED_SCREEN_B),
-  }),
-)
+const enhance = compose(withHandlers({
+  handleOpenScreenB: ({ navigator }) => () => navigator.push(NESTED_SCREEN_B),
+}));
 
-export default enhance(NestedScreenA)
+export default enhance(NestedScreenA);
