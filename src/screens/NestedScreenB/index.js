@@ -26,7 +26,7 @@ const NestedScreenB = ({
     <P>If you want to go directly to the home screen then press the button bellow.</P>
     <Button onPress={handlePopToRoot}>Pop</Button>
     <P>
-      You can do some cool magic with Wix navigation. You can for example dynamically set
+      You can do some cool magic with Wix navigation. You can for stats dynamically set
       navigation buttons.
     </P>
     {shouldShowAlertButton ?

@@ -1,4 +1,4 @@
-package com.example;
+package com.stats;
 
 import com.reactnativenavigation.controllers.SplashActivity;
 

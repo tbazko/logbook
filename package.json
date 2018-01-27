@@ -1,5 +1,5 @@
 {
-  "name": "react-native-redux-wix-navigation-boilerplate",
+  "name": "stats",
   "version": "0.9.0",
   "scripts": {
     "start": "watchman watch-del-all && (adb reverse tcp:8081 tcp:8081 || true) && node node_modules/react-native/local-cli/cli.js start --reset-cache",
@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.20.1",
     "native-base": "^2.3.7",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
