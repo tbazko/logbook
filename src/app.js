@@ -1,8 +1,8 @@
 import { Provider } from 'react-redux'
 import { startTabBasedApp } from './navigation'
 import { registerScreens } from './screens'
-import store from './store'
+import { getConfiguredStore } from './store'
 
-
+const { store } = getConfiguredStore();
 registerScreens({ Provider, store })
 startTabBasedApp()

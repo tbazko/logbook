@@ -3,12 +3,19 @@
     "react-native"
   ],
   "plugins": [
-    [
-      "module-resolver",
+    ["module-resolver",
       {
-        "root": [
-          "./src"
-        ]
+        "alias": {
+          "modules": "./src/modules",
+          "components": "./src/components",
+          "screens": "./src/screens",
+          "static": "./src/static",
+          "config": "./src/config",
+          "navigation": "./src/navigation",
+          "reducer": "./src/reducer",
+          "store": "./src/store",
+          "app": "./src/app"
+        }
       }
     ]
   ]

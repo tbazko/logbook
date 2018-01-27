@@ -1,34 +1,82 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Container, H1, P, Button, Ul } from 'components';
-import { compose, withHandlers } from 'recompose';
-import { NESTED_SCREEN_A } from 'screens/NestedScreenA';
-
+import { connect } from 'react-redux';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Button,
+  Left,
+  Right,
+  Body, Icon, Text, List, ListItem, CheckBox,
+} from 'native-base'
+import { ADD_LIST_ITEM_SCREEN } from 'screens/AddListItem';
+import { selectCheckList } from 'modules/checkList/selectors';
+import { toggleListItem } from 'modules/checkList/actions';
 
 export const HOME_SCREEN = {
-  screen: 'app.Home',
-  title: 'Home',
+  screen: 'stats.Home',
+  title: 'Check list',
+  navigatorStyle: {
+    navBarHidden: true,
+  },
 };
 
-const HomeScreen = ({ handleOpenScreenA }) => (
-  <Container>
-    <H1>Home Screen</H1>
-    <P>This is an example screen that is not connected to redux-store.</P>
-    <P>With Wix React Native Navigation it is easy to make native transitions between screens.</P>
-    <Ul data={[{ id: 'hello', title: 'WORLD' }, { id: 'Tamara', title: 'NAME' }, { id: 'Bazko', title: 'SURNAME' }]} />
-    <Button onPress={handleOpenScreenA}>Open Nested Screen A</Button>
-  </Container>
-);
+class HomeScreen extends PureComponent {
+  static propTypes = {
+    navigator: PropTypes.shape({ // eslint-disable-line
+      push: PropTypes.func,
+    }).isRequired,
+    checkList: PropTypes.arrayOf(PropTypes.object).isRequired,
+    dispatchToggleListItem: PropTypes.func.isRequired,
+  }
 
-HomeScreen.propTypes = {
-  navigator: PropTypes.shape({ // eslint-disable-line
-    push: PropTypes.func,
-  }).isRequired,
-  handleOpenScreenA: PropTypes.func.isRequired,
+  render() {
+    const { navigator } = this.props
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => navigator.push(ADD_LIST_ITEM_SCREEN)}
+            >
+              <Icon name="ios-add" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Check list</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content>
+          <List
+            dataArray={this.props.checkList}
+            renderRow={item => (
+              <ListItem>
+                <CheckBox
+                  checked={item.completed}
+                  onPress={() => this.props.dispatchToggleListItem(item.id)}
+                />
+                <Body>
+                  <Text>{item.title}</Text>
+                </Body>
+              </ListItem>
+            )}
+          />
+        </Content>
+      </Container>
+    )
+  }
+}
+
+const mapStateToProps = state => ({
+  checkList: selectCheckList(state),
+});
+
+const mapDispatchToProps = {
+  dispatchToggleListItem: toggleListItem,
 };
 
-const enhance = compose(withHandlers({
-  handleOpenScreenA: ({ navigator }) => () => navigator.push(NESTED_SCREEN_A),
-}));
-
-export default enhance(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
