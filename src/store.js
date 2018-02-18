@@ -6,6 +6,7 @@ import reducer from './reducer'
 
 export function getConfiguredStore() {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const middlewares = [thunk];
 
   const persistConfig = {
     key: 'root',
@@ -14,10 +15,18 @@ export function getConfiguredStore() {
 
   const persistedReducer = persistReducer(persistConfig, reducer)
 
-  const store = createStore(
-    persistedReducer,
-    composeEnhancers(applyMiddleware(thunk)),
-  )
-  const persistor = persistStore(store)
-  return { store, persistor }
+  return new Promise((resolve, reject) => {
+    try {
+      const store = createStore(
+        persistedReducer,
+        undefined,
+        composeEnhancers(applyMiddleware(...middlewares)),
+      );
+
+      const persistor = persistStore(store, null, () => resolve({ store, persistor }));
+      // persistor.purge();
+    } catch (e) {
+      reject(e);
+    }
+  });
 }

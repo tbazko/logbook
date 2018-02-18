@@ -17,7 +17,6 @@ class Ul extends Component {
     this.state = {
       selected: new Map(),
     };
-    console.log('constructor', this.state);
     this._renderItem = this._renderItem.bind(this);
     this._keyExtractor = this._keyExtractor.bind(this);
     this._onPressItem = this._onPressItem.bind(this);
@@ -38,7 +37,6 @@ class Ul extends Component {
   }
 
   _renderItem({ item }) {
-    console.log(this.state);
     return (
       <Li
         id={item.id}

@@ -1,5 +1,24 @@
+import moment from 'moment'
+import uuid from 'react-native-uuid'
 import * as types from './constants'
 
-export const toggleListItem = id => ({ type: types.TOGGLE_LIST_ITEM, id });
-export const toggleAll = () => ({ type: types.TOGGLE_ALL_LIST_ITEMS });
-export const addListItem = title => ({ type: types.ADD_LIST_ITEM, title });
+export const addItem = (id, title) => ({
+  type: types.ADD_ITEM,
+  id,
+  title,
+})
+
+export const toggleItemCheckbox = (id, timestamp) =>
+  ({ type: types.TOGGLE_ITEM_CHECKBOX, id, timestamp });
+export const addListItem = title => ((dispatch) => {
+  const id = uuid.v4();
+  dispatch(addItem(id, title));
+  dispatch(toggleItemCheckbox(id, moment().startOf('day').unix()));
+});
+export const removeListItem = id => ({ type: types.REMOVE_LIST_ITEM, id });
+export const removeAll = () => ({ type: types.REMOVE_ALL });
+
+
+export const checkAll = timestamp => ({ type: types.CHECK_ALL, timestamp });
+export const uncheckAll = timestamp => ({ type: types.UNCHECK_ALL, timestamp });
+export const setDefaultCheckboxValue = timestamp => ({ type: types.SET_DEFAULT_ITEMS, timestamp });

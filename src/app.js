@@ -1,8 +1,16 @@
+import moment from 'moment'
 import { Provider } from 'react-redux'
 import { startTabBasedApp } from './navigation'
 import { registerScreens } from './screens'
 import { getConfiguredStore } from './store'
+import { setDefaultCheckboxValue } from './modules/checkList/actions'
 
-const { store } = getConfiguredStore();
-registerScreens({ Provider, store })
-startTabBasedApp()
+async function init() {
+  const { store } = await getConfiguredStore()
+  registerScreens({ Provider, store })
+  store.dispatch(setDefaultCheckboxValue(moment().add(-1, 'days').startOf('day').unix()))
+  store.dispatch(setDefaultCheckboxValue(moment().startOf('day').unix()))
+  startTabBasedApp()
+}
+
+init();

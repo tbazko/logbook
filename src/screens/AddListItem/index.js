@@ -18,7 +18,7 @@ import {
 } from 'native-base'
 import { addListItem } from 'modules/checkList/actions'
 
-export const ADD_LIST_ITEM_SCREEN = {
+export const ADD_ITEM_SCREEN = {
   screen: 'stats.AddListItem',
   title: 'Add List Item',
 };
@@ -32,7 +32,7 @@ class AddListItemScreen extends PureComponent {
     navigator: PropTypes.shape({ // eslint-disable-line
       push: PropTypes.func,
     }).isRequired,
-    displatchAddListItem: PropTypes.func.isRequired,
+    dispatchAddListItem: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -43,7 +43,7 @@ class AddListItemScreen extends PureComponent {
   }
 
   submit() {
-    this.props.displatchAddListItem(this.state.title)
+    this.props.dispatchAddListItem(this.state.title)
     this.setState({ title: '' })
   }
 
@@ -82,7 +82,7 @@ class AddListItemScreen extends PureComponent {
 }
 
 const mapDispatchToProps = {
-  displatchAddListItem: addListItem,
+  dispatchAddListItem: addListItem,
 };
 
 export default connect(null, mapDispatchToProps)(AddListItemScreen);

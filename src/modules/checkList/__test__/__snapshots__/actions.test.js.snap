@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckList should dispatch "ADD_ITEM" with title "Test" and id "1" 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "title": "Test",
+    "type": "stats/checkList/ADD_ITEM",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "ADD_ITEM", "TOGGLE_ITEM_CHECKBOX" 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "title": "Test",
+    "type": "stats/checkList/ADD_ITEM",
+  },
+  Object {
+    "id": "1",
+    "timestamp": 1518908400,
+    "type": "stats/checkList/TOGGLE_ITEM_CHECKBOX",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "CHECK_ALL" with timestamp "timestamp-2" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-2",
+    "type": "stats/checkList/CHECK_ALL",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "REMOVE_ALL" 1`] = `
+Array [
+  Object {
+    "type": "stats/checkList/REMOVE_ALL",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "REMOVE_LIST_ITEM" with id "1" 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "type": "stats/checkList/REMOVE_LIST_ITEM",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "SET_DEFAULT_ITEMS" with timestamp "timestamp-3" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-3",
+    "type": "stats/checkList/SET_DEFAULT_ITEMS",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "TOGGLE_ITEM_CHECKBOX" with id "1" and timestamp "timestamp-1" 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "timestamp": "timestamp-1",
+    "type": "stats/checkList/TOGGLE_ITEM_CHECKBOX",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "UNCHECK_ALL" with timestamp "timestamp-3" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-3",
+    "type": "stats/checkList/UNCHECK_ALL",
+  },
+]
+`;
