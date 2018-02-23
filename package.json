@@ -29,6 +29,7 @@
     "react-native-debugger-open": "^0.3.11",
     "react-native-navigation": "^1.1.268",
     "react-native-sqlite-storage": "^3.3.4",
+    "react-native-svg": "^6.2.2",
     "react-native-swipeable": "^0.6.0",
     "react-native-uuid": "^1.4.9",
     "react-redux": "^5.0.6",
@@ -38,7 +39,8 @@
     "redux-mock-store": "^1.2.3",
     "redux-persist": "^5.5.0",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.2.3"
+    "styled-components": "^2.2.3",
+    "victory-native": "^0.17.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",

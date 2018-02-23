@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  FlatList,
-} from 'react-native';
+import { FlatList } from 'react-native';
 
 import Li from '../Li';
 

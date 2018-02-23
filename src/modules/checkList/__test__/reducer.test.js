@@ -83,6 +83,14 @@ describe('CheckList Reducer', () => {
     expect(state).toMatchSnapshot();
   });
 
+  it('should set activeCheckList to "active-timestamp"', () => {
+    state = reducer(state, {
+      type: types.SET_ACTIVE_CHECKLIST,
+      timestamp: 'active-timestamp',
+    });
+    expect(state).toMatchSnapshot();
+  });
+
   // it('should remove all elements and return empty array', () => {
   //   state = reducer(state, {
   //     type: types.REMOVE_ALL,

@@ -8,7 +8,7 @@ import {
   Button,
   Body, Icon, Text, List, ListItem, CheckBox,
 } from 'native-base'
-import { selectTodayCheckList } from 'modules/checkList/selectors';
+import { selectActiveCheckList } from 'modules/checkList/selectors';
 import { toggleItemCheckbox, removeListItem } from 'modules/checkList/actions';
 import HomeHeader from './home-header'
 
@@ -31,17 +31,17 @@ const HomeScreen = (props) => {
 
   return (
     <Container>
-      <HomeHeader navigator={navigator} date />
+      <HomeHeader navigator={navigator} timestamp={checkList.timestamp} />
       <Content>
         {checkList &&
           <List
-            dataSource={ds.cloneWithRows(checkList)}
+            dataSource={ds.cloneWithRows(checkList.items)}
             renderRow={item => (
               <ListItem>
                 <CheckBox
                   style={{ marginLeft: 3 }}
                   checked={item.completed}
-                  onPress={() => props.dispatchToggleItemCheckbox(item.id, item.timestamp)}
+                  onPress={() => props.dispatchToggleItemCheckbox(item.id, checkList.timestamp)}
                 />
                 <Body>
                   <Text>{item.title}</Text>
@@ -69,13 +69,16 @@ HomeScreen.propTypes = {
   navigator: PropTypes.shape({ // eslint-disable-line
     push: PropTypes.func,
   }).isRequired,
-  checkList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  checkList: PropTypes.shape({ // eslint-disable-line
+    items: PropTypes.arrayOf(PropTypes.object),
+    timestamp: PropTypes.number.isRequired,
+  }).isRequired,
   dispatchToggleItemCheckbox: PropTypes.func.isRequired,
   dispatchRemoveListItem: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  checkList: selectTodayCheckList(state),
+  checkList: selectActiveCheckList(state),
 });
 
 const mapDispatchToProps = {

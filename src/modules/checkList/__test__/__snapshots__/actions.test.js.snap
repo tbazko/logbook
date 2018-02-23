@@ -19,7 +19,7 @@ Array [
   },
   Object {
     "id": "1",
-    "timestamp": 1518908400,
+    "timestamp": 1519340400,
     "type": "stats/checkList/TOGGLE_ITEM_CHECKBOX",
   },
 ]
@@ -47,6 +47,15 @@ Array [
   Object {
     "id": "1",
     "type": "stats/checkList/REMOVE_LIST_ITEM",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "SET_ACTIVE_CHECKLIST" with timestamp "timestamp-3" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-3",
+    "type": "stats/checkList/SET_ACTIVE_CHECKLIST",
   },
 ]
 `;

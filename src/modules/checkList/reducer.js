@@ -66,6 +66,11 @@ export default (state = initialState, action) => {
           [action.timestamp]: logs,
         },
       }
+    case types.SET_ACTIVE_CHECKLIST:
+      return {
+        ...state,
+        activeCheckList: action.timestamp,
+      }
     // case types.REMOVE_ALL:
     //   return []
 

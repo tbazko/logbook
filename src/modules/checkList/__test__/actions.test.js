@@ -46,4 +46,9 @@ describe('CheckList', () => {
     await store.dispatch(action.setDefaultCheckboxValue('timestamp-3'));
     expect(store.getActions()).toMatchSnapshot();
   });
+
+  it('should dispatch "SET_ACTIVE_CHECKLIST" with timestamp "timestamp-3"', async () => {
+    await store.dispatch(action.setActiveCheckList('timestamp-3'));
+    expect(store.getActions()).toMatchSnapshot();
+  });
 });
