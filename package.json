@@ -39,6 +39,7 @@
     "redux-mock-store": "^1.2.3",
     "redux-persist": "^5.5.0",
     "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
     "styled-components": "^2.2.3",
     "victory-native": "^0.17.1"
   },
