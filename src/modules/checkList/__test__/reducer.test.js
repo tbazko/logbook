@@ -75,7 +75,7 @@ describe('CheckList Reducer', () => {
     expect(emptyLogsState).toMatchSnapshot();
   });
 
-  it('should remove object "1" from "items"', () => {
+  it('should remove object "1" from "items" and add it to "historicalItems"', () => {
     state = reducer(state, {
       type: types.REMOVE_LIST_ITEM,
       id: '1',
@@ -83,7 +83,7 @@ describe('CheckList Reducer', () => {
     expect(state).toMatchSnapshot();
   });
 
-  it('should set activeCheckList to "active-timestamp"', () => {
+  it('should set activeCheckListId to "active-timestamp"', () => {
     state = reducer(state, {
       type: types.SET_ACTIVE_CHECKLIST,
       timestamp: 'active-timestamp',
@@ -91,10 +91,10 @@ describe('CheckList Reducer', () => {
     expect(state).toMatchSnapshot();
   });
 
-  // it('should remove all elements and return empty array', () => {
-  //   state = reducer(state, {
-  //     type: types.REMOVE_ALL,
-  //   });
-  //   expect(state).toMatchSnapshot();
-  // });
+  it('should remove all elements and return empty array', () => {
+    state = reducer(state, {
+      type: types.REMOVE_ALL,
+    });
+    expect(state).toMatchSnapshot();
+  });
 });

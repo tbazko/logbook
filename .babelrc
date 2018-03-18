@@ -14,7 +14,8 @@
           "navigation": "./src/navigation",
           "reducer": "./src/reducer",
           "store": "./src/store",
-          "app": "./src/app"
+          "app": "./src/app",
+          "storeMocks": "./src/storeMocks",
         }
       }
     ]

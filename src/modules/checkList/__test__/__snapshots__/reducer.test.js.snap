@@ -17,8 +17,40 @@ Object {
 }
 `;
 
-exports[`CheckList Reducer should remove object "1" from "items" 1`] = `
+exports[`CheckList Reducer should remove all elements and return empty array 1`] = `
 Object {
+  "activeCheckListId": "active-timestamp",
+  "historicalItems": Object {
+    "1": Object {
+      "title": "Test 1",
+    },
+  },
+  "items": null,
+  "logs": Object {
+    "timestamp-1": Object {
+      "2": Object {
+        "completed": false,
+      },
+      "3": Object {
+        "completed": false,
+      },
+    },
+    "timestamp-2": Object {
+      "2": Object {
+        "completed": false,
+      },
+    },
+  },
+}
+`;
+
+exports[`CheckList Reducer should remove object "1" from "items" and add it to "historicalItems" 1`] = `
+Object {
+  "historicalItems": Object {
+    "1": Object {
+      "title": "Test 1",
+    },
+  },
   "items": Object {
     "2": Object {
       "title": "Test 2",
@@ -109,9 +141,14 @@ Object {
 }
 `;
 
-exports[`CheckList Reducer should set activeCheckList to "active-timestamp" 1`] = `
+exports[`CheckList Reducer should set activeCheckListId to "active-timestamp" 1`] = `
 Object {
-  "activeCheckList": "active-timestamp",
+  "activeCheckListId": "active-timestamp",
+  "historicalItems": Object {
+    "1": Object {
+      "title": "Test 1",
+    },
+  },
   "items": Object {
     "2": Object {
       "title": "Test 2",

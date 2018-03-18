@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
-import { selectWeeks } from 'modules/chart/selectors';
-import { connect } from 'react-redux';
+import _ from 'lodash'
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { View, StyleSheet } from 'react-native'
+import { selectCompletedPerWeek } from 'modules/chart/selectors'
+import { connect } from 'react-redux'
 import {
   Container,
   Header,
@@ -11,8 +12,11 @@ import {
   Left,
   Right,
   Body,
+  Text,
+  Form,
+  Picker,
 } from 'native-base'
-import { VictoryBar, VictoryChart, VictoryTheme } from 'victory-native';
+import { VictoryBar, VictoryChart } from 'victory-native'
 
 export const STATISTICS_SCREEN = {
   screen: 'stats.Statistics',
@@ -20,28 +24,38 @@ export const STATISTICS_SCREEN = {
   navigatorStyle: {
     navBarHidden: true,
   },
-};
+}
+
+const { Item } = Picker
 
 class StatisticsScreen extends PureComponent {
   static propTypes = {
-    weeks: PropTypes.array,
     navigator: PropTypes.shape({ // eslint-disable-line
       push: PropTypes.func,
     }).isRequired,
+    completedPerWeek: PropTypes.object,
   }
 
-  static defaultProps = {
-    weeks: null,
+  constructor(props) {
+    super(props)
+    const { completedPerWeek } = props
+    this.activityNames = _.keys(completedPerWeek)
+    this.state = {
+      selected: this.activityNames[0],
+    }
+  }
+
+  onValueChange(value) {
+    this.setState({
+      selected: value,
+    })
   }
 
   render() {
-    const data = [
-      { quarter: this.props.weeks[0], earnings: 13000 },
-      { quarter: this.props.weeks[1], earnings: 16500 },
-      { quarter: this.props.weeks[2], earnings: 14250 },
-      { quarter: this.props.weeks[3], earnings: 19000 },
-    ];
-    const { navigator } = this.props
+    const { completedPerWeek } = this.props
+
+
+    const data = completedPerWeek[this.state.selected]
     return (
       <Container>
         <Header>
@@ -52,21 +66,31 @@ class StatisticsScreen extends PureComponent {
           <Right />
         </Header>
         <Content>
+          <Form>
+            <Picker
+              mode="dropdown"
+              placeholder="Select One"
+              selectedValue={this.state.selected}
+              onValueChange={value => this.onValueChange(value)}
+            >
+              {this.activityNames.map(name => <Item label={name} value={name} key={name} />)}
+            </Picker>
+          </Form>
           <View style={styles.container}>
-            <VictoryChart width={350}>
+            <VictoryChart width={360} domainPadding={{ x: [20, 20] }}>
               <VictoryBar
                 data={data}
-                x="quarter"
-                y="earnings"
-                alignment="start"
-                horizontal
+                x="week"
+                y="completed"
+                alignment="middle"
                 animate={{
                   duration: 2000,
                   onLoad: { duration: 1000 },
                 }}
-                barRatio={0}
+                barRatio={1}
               />
             </VictoryChart>
+            <Text>Week</Text>
           </View>
         </Content>
       </Container>
@@ -79,12 +103,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5fcff',
   },
 })
 
 const mapStateToProps = state => ({
-  weeks: selectWeeks(state),
-});
+  completedPerWeek: selectCompletedPerWeek(state),
+})
 
-export default connect(mapStateToProps)(StatisticsScreen);
+export default connect(mapStateToProps)(StatisticsScreen)

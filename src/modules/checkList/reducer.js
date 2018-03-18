@@ -7,14 +7,17 @@ const initialState = {
 }
 
 // const initialState = {
-//   items: {
-//     [id]: { title, descr }
+//   historicalItems: {
+//     [id]: { title, descr, period }
 //   },
-//   logs: {
-//     [timestamp]: {
-//       [id]: { completed }
-//     }
-//   }
+//   items: {
+//     [id]: { title, descr, period }
+//   },
+//   [start-of-day-timestamp]: {
+//     [vega]: { completed: false, timestamp },
+//     [sport]: { completed: false },
+//     [alco]: { completed: true }
+//   },
 // }
 
 export default (state = initialState, action) => {
@@ -46,6 +49,10 @@ export default (state = initialState, action) => {
     case types.REMOVE_LIST_ITEM:
       return {
         ...state,
+        historicalItems: {
+          ...state.historicalItems,
+          ..._.pick(state.items, [`${action.id}`]),
+        },
         items: _.omit(state.items, [`${action.id}`]),
       }
     // case types.CHECK_ALL:
@@ -69,11 +76,13 @@ export default (state = initialState, action) => {
     case types.SET_ACTIVE_CHECKLIST:
       return {
         ...state,
-        activeCheckList: action.timestamp,
+        activeCheckListId: action.timestamp,
       }
-    // case types.REMOVE_ALL:
-    //   return []
-
+    case types.REMOVE_ALL:
+      return {
+        ...state,
+        items: null,
+      }
     default:
       return state
   }

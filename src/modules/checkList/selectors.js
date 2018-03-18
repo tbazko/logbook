@@ -1,17 +1,17 @@
 // TODO: implement reselect
+import _ from 'lodash'
 
 export const selectActiveCheckList = (state) => {
-  const { logs, activeCheckList } = state.checkList
-  const checkList = { timestamp: activeCheckList, items: [] };
-  if (!logs || !logs[activeCheckList]) return checkList;
+  const { logs, activeCheckListId, items, historicalItems } = state.checkList
+  const activeCheckList = { timestamp: activeCheckListId, items: [] };
+  if (!logs || !logs[activeCheckListId]) return activeCheckList;
 
-  Object.keys(state.checkList.items).forEach((itemId) => {
-    checkList.items.push({
+  Object.keys(logs[activeCheckListId]).forEach((itemId) => {
+    activeCheckList.items.push({
       id: itemId,
-      title: state.checkList.items[itemId].title,
-      completed: state.checkList.logs[activeCheckList][itemId].completed,
+      title: _.get(items[itemId], 'title', false) || _.get(historicalItems[itemId], 'title', false) || 'Unknown',
+      completed: logs[activeCheckListId][itemId].completed,
     })
-  });
-  return checkList
-};
-
+  })
+  return activeCheckList
+}

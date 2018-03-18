@@ -1,17 +1,17 @@
-import checkList from '../mockData/checklist.mock';
-import * as s from '../selectors';
-// import * as action from '../actions';
+import checkList from 'storeMocks/checklist.mock'
+import * as s from '../selectors'
+// import * as action from '../actions'
 
 describe('Charts selectors', () => {
-  const state = checkList;
+  const state = checkList
 
   it('should return amount of weeks in state', () => {
-    expect(s.selectWeeksAmount(state)).toEqual(4);
-  });
+    expect(s.selectWeeksAmount(state)).toEqual(3)
+  })
 
   it('should return week numbers in array', () => {
-    expect(s.selectWeeks(state)).toEqual(['5', '6', '7', '8']);
-  });
+    expect(s.selectWeeks(state)).toEqual(['5', '6', '7'])
+  })
 
   it('should return object with weeks containing arrays of day timestamps', () => {
     expect(s.selectWeeksWithDays(state)).toEqual({
@@ -32,26 +32,15 @@ describe('Charts selectors', () => {
       ],
       7: [
         '1518303600',
-        '1518390000',
-        '1518476400',
-        '1518562800',
-        '1518649200',
-        '1518735600',
-        '1518822000',
       ],
-      8: [
-        '1518908400',
-        '1518994800',
-        '1519081200',
-        '1519167600',
-        '1519254000',
-      ],
-    });
-  });
-
-  it('should return amount of times completed per week for activity', () => {
-    expect(s.getCompletedPerWeek(state)).toEqual({
-
     })
-  });
-});
+  })
+
+  it('should return data ready for the chart, completed per week', () => {
+    expect(s.selectCompletedPerWeek(state).Sport).toEqual([
+      { week: '5', completed: 2 },
+      { week: '6', completed: 5 },
+      { week: '7', completed: 0 },
+    ])
+  })
+})
