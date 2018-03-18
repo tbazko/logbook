@@ -27,7 +27,17 @@ describe('Charts selectors', () => {
     })
   })
 
-  it('should return data ready for the chart, completed per week', () => {
+  it('should return empty object if there is no data available', () => {
+    const initialState = {
+      checkList: {
+        items: null,
+        logs: null,
+      },
+    }
+    expect(s.getCompletedPerWeek(initialState)).toEqual({})
+  })
+
+  it('should return data ready for the chart, completed times per week for specific activity', () => {
     expect(s.getCompletedPerWeek(state).Sport).toEqual([
       { week: '5', completed: 2 },
       { week: '6', completed: 5 },

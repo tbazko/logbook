@@ -6,7 +6,7 @@ import {
   Container,
   Content,
   Button,
-  Body, Icon, Text, List, ListItem, CheckBox,
+  Body, Icon, List, ListItem, CheckBox, Text,
 } from 'native-base'
 import { getActiveCheckList } from 'modules/checkList/selectors';
 import { toggleItemCheckbox, removeListItem } from 'modules/checkList/actions';
@@ -28,12 +28,16 @@ const HomeScreen = (props) => {
 
   const { navigator, checkList } = props
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
   return (
     <Container>
       <HomeHeader navigator={navigator} timestamp={checkList.timestamp} />
       <Content>
-        {checkList &&
+        {checkList.items.length === 0 &&
+          <Text>
+            To set new goal press the &quot;+&quot; (plus) icon above.
+          </Text>
+        }
+        {checkList.items.length > 0 &&
           <List
             dataSource={ds.cloneWithRows(checkList.items)}
             renderRow={item => (
