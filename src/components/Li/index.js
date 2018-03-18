@@ -19,14 +19,14 @@ class Li extends PureComponent {
     selected: false,
   }
 
-  _onPress() {
+  onPress() {
     this.props.onPressItem(this.props.id);
   }
 
   render() {
     const textColor = this.props.selected ? 'red' : 'black';
     return (
-      <TouchableOpacity onPress={() => this._onPress()}>
+      <TouchableOpacity onPress={() => this.onPress()}>
         <View>
           <Text style={{ color: textColor }}>
             {this.props.title}

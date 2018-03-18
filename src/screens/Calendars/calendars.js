@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import {
   Container,
@@ -10,10 +9,9 @@ import {
   Button,
   Left,
   Right,
-  Body, Icon, Text, List, ListItem, CheckBox,
+  Body, Icon,
 } from 'native-base'
 import { ADD_ITEM_SCREEN } from 'screens/AddListItem';
-import { selectCheckList } from 'modules/checkList/selectors';
 import { toggleItemCheckbox, removeListItem } from 'modules/checkList/actions';
 
 export const CALENDARS_SCREEN = {
@@ -29,8 +27,6 @@ class CalendarScreen extends PureComponent {
     navigator: PropTypes.shape({ // eslint-disable-line
       push: PropTypes.func,
     }).isRequired,
-    // checkList: PropTypes.arrayOf(PropTypes.object).isRequired,
-    dispatchToggleItemCheckbox: PropTypes.func.isRequired,
     dispatchRemoveListItem: PropTypes.func.isRequired,
   }
 
@@ -41,7 +37,6 @@ class CalendarScreen extends PureComponent {
 
   render() {
     const { navigator } = this.props
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
         <Header>
@@ -64,8 +59,7 @@ class CalendarScreen extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  // checkList: selectCheckList(state),
+const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = {

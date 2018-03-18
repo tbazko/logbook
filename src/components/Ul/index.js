@@ -15,16 +15,12 @@ class Ul extends Component {
     this.state = {
       selected: new Map(),
     };
-    this._renderItem = this._renderItem.bind(this);
-    this._keyExtractor = this._keyExtractor.bind(this);
-    this._onPressItem = this._onPressItem.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+    this.keyExtractor = this.keyExtractor.bind(this);
+    this.onPressItem = this.onPressItem.bind(this);
   }
 
-  _keyExtractor(item, index) {
-    return item.id;
-  }
-
-  _onPressItem(id) {
+  onPressItem(id) {
     // updater functions are preferred for transactional updates
     this.setState((state) => {
       // copy the map rather than modifying state.
@@ -34,11 +30,11 @@ class Ul extends Component {
     });
   }
 
-  _renderItem({ item }) {
+  renderItem({ item }) {
     return (
       <Li
         id={item.id}
-        onPressItem={this._onPressItem}
+        onPressItem={this.onPressItem}
         selected={!!this.state.selected.get(item.id)}
         title={item.title}
       />
@@ -50,8 +46,8 @@ class Ul extends Component {
       <FlatList
         data={this.props.data}
         extraData={this.state}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
+        keyExtractor={item => item.id}
+        renderItem={this.renderItem}
       />
     );
   }

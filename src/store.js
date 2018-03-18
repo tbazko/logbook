@@ -5,7 +5,8 @@ import storage from 'redux-persist/lib/storage'
 import reducer from './reducer'
 
 export function getConfiguredStore() {
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line no-undef
   const middlewares = [thunk];
 
   const persistConfig = {
