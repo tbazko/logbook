@@ -1,8 +1,7 @@
 import checkList from 'storeMocks/checklist.mock'
 import * as s from '../selectors'
-// import * as action from '../actions'
 
-describe.only('CheckList selectors', () => {
+describe('CheckList selectors', () => {
   it('should return empty item list', () => {
     const initialState = {
       checkList: {
@@ -10,12 +9,12 @@ describe.only('CheckList selectors', () => {
         logs: null,
       },
     }
-    expect(s.selectActiveCheckList(initialState)).toEqual({ items: [], timestamp: undefined })
+    expect(s.getActiveCheckList(initialState)).toEqual({ items: [], timestamp: undefined })
   })
 
   it('should select and return active checkList', () => {
     const state = checkList
-    expect(s.selectActiveCheckList(state)).toEqual({
+    expect(s.getActiveCheckList(state)).toEqual({
       timestamp: 1518303600,
       items: [
         {

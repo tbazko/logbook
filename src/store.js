@@ -24,6 +24,7 @@ export function getConfiguredStore() {
       );
 
       const persistor = persistStore(store, null, () => resolve({ store, persistor }));
+      // persistor.purge();
     } catch (e) {
       reject(e);
     }

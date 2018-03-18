@@ -1,33 +1,32 @@
 import moment from 'moment'
 import _ from 'lodash'
+import { createSelector } from 'reselect'
 
+const getLogs = state => state.checkList.logs
+const getItems = state => state.checkList.items
 
-export function selectWeeks(state) {
-  return _.keys(selectWeeksWithDays(state))
-}
+export const getWeeksWithDays = createSelector(
+  [getLogs],
+  (logs) => {
+    const logTimestamps = _.keys(logs)
+    return groupByWeek(logTimestamps)
+  },
+)
 
-export function selectWeeksAmount(state) {
-  return _.keys(selectWeeksWithDays(state)).length
-}
+export const getCompletedPerWeek = createSelector(
+  [getLogs, getItems, getWeeksWithDays],
+  (logs, items, weeksWithDays) => {
+    const itemIds = _.keys(items)
+    const completedData = {}
 
-export function selectWeeksWithDays(state) {
-  const logTimestamps = _.keys(state.checkList.logs)
-  return groupByWeek(logTimestamps)
-}
-
-export function selectCompletedPerWeek(state) {
-  const { logs, items } = state.checkList
-  const weeksWithDays = selectWeeksWithDays(state)
-  const itemIds = _.keys(items)
-  const completedData = {}
-
-  itemIds.forEach((id) => {
-    const weeksWithCompletedDays = formatCompletedPerWeek(id, weeksWithDays, logs);
-    const { title } = state.checkList.items[id]
-    completedData[title] = weeksWithCompletedDays
-  })
-  return completedData
-}
+    itemIds.forEach((id) => {
+      const weeksWithCompletedDays = formatCompletedPerWeek(id, weeksWithDays, logs);
+      const { title } = items[id]
+      completedData[title] = weeksWithCompletedDays
+    })
+    return completedData
+  },
+)
 
 function formatCompletedPerWeek(id, weeksWithDays, logs) {
   const weeksWithCompletedDays = []

@@ -8,7 +8,7 @@ import {
   Button,
   Body, Icon, Text, List, ListItem, CheckBox,
 } from 'native-base'
-import { selectActiveCheckList } from 'modules/checkList/selectors';
+import { getActiveCheckList } from 'modules/checkList/selectors';
 import { toggleItemCheckbox, removeListItem } from 'modules/checkList/actions';
 import HomeHeader from './home-header'
 
@@ -78,7 +78,7 @@ HomeScreen.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  checkList: selectActiveCheckList(state),
+  checkList: getActiveCheckList(state),
 });
 
 const mapDispatchToProps = {

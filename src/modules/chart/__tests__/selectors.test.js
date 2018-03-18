@@ -1,20 +1,11 @@
 import checkList from 'storeMocks/checklist.mock'
 import * as s from '../selectors'
-// import * as action from '../actions'
 
 describe('Charts selectors', () => {
   const state = checkList
 
-  it('should return amount of weeks in state', () => {
-    expect(s.selectWeeksAmount(state)).toEqual(3)
-  })
-
-  it('should return week numbers in array', () => {
-    expect(s.selectWeeks(state)).toEqual(['5', '6', '7'])
-  })
-
   it('should return object with weeks containing arrays of day timestamps', () => {
-    expect(s.selectWeeksWithDays(state)).toEqual({
+    expect(s.getWeeksWithDays(state)).toEqual({
       5: [
         '1517353200',
         '1517439600',
@@ -37,7 +28,7 @@ describe('Charts selectors', () => {
   })
 
   it('should return data ready for the chart, completed per week', () => {
-    expect(s.selectCompletedPerWeek(state).Sport).toEqual([
+    expect(s.getCompletedPerWeek(state).Sport).toEqual([
       { week: '5', completed: 2 },
       { week: '6', completed: 5 },
       { week: '7', completed: 0 },

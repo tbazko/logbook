@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { View, StyleSheet } from 'react-native'
-import { selectCompletedPerWeek } from 'modules/chart/selectors'
+import { getCompletedPerWeek } from 'modules/chart/selectors'
 import { connect } from 'react-redux'
 import {
   Container,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  completedPerWeek: selectCompletedPerWeek(state),
+  completedPerWeek: getCompletedPerWeek(state),
 })
 
 export default connect(mapStateToProps)(StatisticsScreen)
