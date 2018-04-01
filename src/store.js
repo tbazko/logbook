@@ -4,6 +4,10 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import reducer from './reducer'
 
+
+let store
+let persistor
+
 export function getConfiguredStore() {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line no-undef
@@ -18,16 +22,26 @@ export function getConfiguredStore() {
 
   return new Promise((resolve, reject) => {
     try {
-      const store = createStore(
+      store = createStore(
         persistedReducer,
         undefined,
         composeEnhancers(applyMiddleware(...middlewares)),
       );
 
-      const persistor = persistStore(store, null, () => resolve({ store, persistor }));
+      persistor = persistStore(store, null, () => resolve({ store, persistor }));
       // persistor.purge();
     } catch (e) {
       reject(e);
     }
   });
+}
+
+export function getPersistor() {
+  if (persistor) return persistor
+  throw new Error('Persistor does not exist')
+}
+
+export function getState() {
+  if (store) return store.getState()
+  throw new Error('Store does not exist')
 }

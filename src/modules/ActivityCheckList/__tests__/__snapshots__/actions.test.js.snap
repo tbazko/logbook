@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckList should dispatch "CHECK_ALL" with timestamp "timestamp-2" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-2",
+    "type": "logbook/CHECK_ALL",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "REMOVE_ALL" 1`] = `
+Array [
+  Object {
+    "type": "logbook/REMOVE_ALL",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "REMOVE_LIST_ITEM" with id "1" 1`] = `
+Array [
+  Object {
+    "activityType": undefined,
+    "id": "1",
+    "type": "logbook/REMOVE_LIST_ITEM",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "SET_ACTIVE_CHECKLIST" with timestamp "timestamp-3" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-3",
+    "type": "logbook/SET_ACTIVE_CHECKLIST",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "SET_DEFAULT_LOG_VALUES" with timestamp "timestamp-3" 1`] = `
+Array [
+  Object {
+    "activityTypes": undefined,
+    "timestamp": "timestamp-3",
+    "type": "logbook/SET_DEFAULT_LOG_VALUES",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "TOGGLE_ITEM_CHECKBOX" with id "1" and timestamp "timestamp-1" 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "timestamp": "timestamp-1",
+    "type": "logbook/TOGGLE_ITEM_CHECKBOX",
+  },
+]
+`;
+
+exports[`CheckList should dispatch "UNCHECK_ALL" with timestamp "timestamp-3" 1`] = `
+Array [
+  Object {
+    "timestamp": "timestamp-3",
+    "type": "logbook/UNCHECK_ALL",
+  },
+]
+`;

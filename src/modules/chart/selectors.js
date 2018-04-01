@@ -2,45 +2,45 @@ import moment from 'moment'
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 
-const getLogs = state => state.checkList.logs
-const getItems = state => state.checkList.items
+const getLogs = state => state.activityLogs
+const getActivityTypes = state => state.activityTypes
 
 export const getWeeksWithDays = createSelector(
   [getLogs],
-  (logs) => {
-    const logTimestamps = _.keys(logs)
+  (activityLogs) => {
+    const logTimestamps = _.keys(activityLogs)
     return groupByWeek(logTimestamps)
   },
 )
 
 export const getCompletedPerWeek = createSelector(
-  [getLogs, getItems, getWeeksWithDays],
-  (logs, items, weeksWithDays) => {
-    const itemIds = _.keys(items)
+  [getLogs, getActivityTypes, getWeeksWithDays],
+  (activityLogs, activityTypes, weeksWithDays) => {
+    const itemIds = _.keys(activityTypes)
     const completedData = {}
 
     itemIds.forEach((id) => {
-      const weeksWithCompletedDays = formatCompletedPerWeek(id, weeksWithDays, logs);
-      const { title } = items[id]
+      const weeksWithCompletedDays = formatCompletedPerWeek(id, weeksWithDays, activityLogs);
+      const { title } = activityTypes[id]
       completedData[title] = weeksWithCompletedDays
     })
     return completedData
   },
 )
 
-function formatCompletedPerWeek(id, weeksWithDays, logs) {
+function formatCompletedPerWeek(id, weeksWithDays, activityLogs) {
   const weeksWithCompletedDays = []
   _.keys(weeksWithDays).forEach((weekNumber) => {
     weeksWithCompletedDays.push({
       week: weekNumber,
-      completed: filterCompletedPerTimePeriod(id, weeksWithDays[weekNumber], logs).length,
+      completed: filterCompletedPerTimePeriod(id, weeksWithDays[weekNumber], activityLogs).length,
     })
   })
   return weeksWithCompletedDays
 }
 
-function filterCompletedPerTimePeriod(id, timestamps, logs) {
-  return timestamps.filter(timestamp => logs[timestamp][id].completed)
+function filterCompletedPerTimePeriod(id, timestamps, activityLogs) {
+  return timestamps.filter(timestamp => _.get(activityLogs, `[${timestamp}][${id}].completed`, 0))
 }
 
 function groupByWeek(logTimestamps) {

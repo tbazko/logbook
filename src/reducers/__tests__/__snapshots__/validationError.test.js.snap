@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckList Reducer should add "Test error" error 1`] = `
+Object {
+  "message": "Test error",
+}
+`;
+
+exports[`CheckList Reducer should reset to initial state (null) 1`] = `null`;
+
+exports[`CheckList Reducer should return object empty validationError 1`] = `null`;

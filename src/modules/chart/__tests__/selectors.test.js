@@ -1,8 +1,8 @@
-import checkList from 'storeMocks/checklist.mock'
+import activities from 'storeMocks/activities.mock'
 import * as s from '../selectors'
 
 describe('Charts selectors', () => {
-  const state = checkList
+  const state = activities
 
   it('should return object with weeks containing arrays of day timestamps', () => {
     expect(s.getWeeksWithDays(state)).toEqual({
@@ -29,9 +29,9 @@ describe('Charts selectors', () => {
 
   it('should return empty object if there is no data available', () => {
     const initialState = {
-      checkList: {
-        items: null,
-        logs: null,
+      activities: {
+        activityTypes: null,
+        activityLogs: null,
       },
     }
     expect(s.getCompletedPerWeek(initialState)).toEqual({})
@@ -41,6 +41,12 @@ describe('Charts selectors', () => {
     expect(s.getCompletedPerWeek(state).Sport).toEqual([
       { week: '5', completed: 2 },
       { week: '6', completed: 5 },
+      { week: '7', completed: 0 },
+    ])
+
+    expect(s.getCompletedPerWeek(state)['Just Added Activity']).toEqual([
+      { week: '5', completed: 0 },
+      { week: '6', completed: 0 },
       { week: '7', completed: 0 },
     ])
   })

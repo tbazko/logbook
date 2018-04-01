@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckList Reducer should add activityType "Sport" to "historicalActivityTypes" 1`] = `
+Object {
+  "Sport-Id": Object {
+    "title": "Sport",
+  },
+}
+`;
+
+exports[`CheckList Reducer should return null for historicalActivityTypes 1`] = `null`;

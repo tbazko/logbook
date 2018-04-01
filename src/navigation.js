@@ -1,8 +1,8 @@
 import { Navigation } from 'react-native-navigation'
 import { THEME } from 'config'
-import { HOME_SCREEN } from 'screens/Home/index'
-import { STATISTICS_SCREEN } from 'screens/Statistics/index'
-import { CALENDARS_SCREEN } from 'screens/Calendars/index'
+import { HOME_SCREEN } from 'screens/HomeScreen'
+import { CHART_SCREEN } from 'screens/ChartScreen'
+import { CALENDAR_SCREEN } from 'screens/CalendarScreen'
 
 import listIcoSrc from 'static/images/list.png'
 import statsIcoSrc from 'static/images/stats.png'
@@ -15,11 +15,11 @@ const tabs = [{
 }, {
   label: 'Calendars',
   icon: calendarIcoSrc,
-  ...CALENDARS_SCREEN,
+  ...CALENDAR_SCREEN,
 }, {
   label: 'Statistics',
   icon: statsIcoSrc,
-  ...STATISTICS_SCREEN,
+  ...CHART_SCREEN,
 }]
 
 export const startTabBasedApp = () => Navigation.startTabBasedApp({

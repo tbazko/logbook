@@ -8,6 +8,7 @@
         "alias": {
           "modules": "./src/modules",
           "components": "./src/components",
+          "types": "./src/types",
           "screens": "./src/screens",
           "static": "./src/static",
           "config": "./src/config",
@@ -16,6 +17,7 @@
           "store": "./src/store",
           "app": "./src/app",
           "storeMocks": "./src/storeMocks",
+          "reducers": "./src/reducers"
         }
       }
     ]

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddActivityForm module actions should dispatch "ADD_ACTIVITY_ERROR" with EmptyTitleError 1`] = `
+Array [
+  Object {
+    "id": "2",
+    "timestamp": 1522620000,
+    "title": "",
+    "type": "logbook.AddActivityForm.ADD_ACTIVITY_TYPE",
+  },
+]
+`;
+
+exports[`AddActivityForm module actions should dispatch "ADD_ACTIVITY_ERROR" with NotUniqueTitleError 1`] = `
+Array [
+  Object {
+    "id": "3",
+    "timestamp": 1522620000,
+    "title": "TestItem",
+    "type": "logbook.AddActivityForm.ADD_ACTIVITY_TYPE",
+  },
+]
+`;
+
+exports[`AddActivityForm module actions should dispatch "ADD_ACTIVITY_ERROR" with NotUniqueTitleError 2`] = `
+Array [
+  Object {
+    "id": "4",
+    "timestamp": 1522620000,
+    "title": "TeStIteM",
+    "type": "logbook.AddActivityForm.ADD_ACTIVITY_TYPE",
+  },
+]
+`;
+
+exports[`AddActivityForm module actions should dispatch "ADD_ACTIVITY_ERROR" with NotUniqueTitleError 3`] = `
+Array [
+  Object {
+    "id": "5",
+    "timestamp": 1522620000,
+    "title": "Historical",
+    "type": "logbook.AddActivityForm.ADD_ACTIVITY_TYPE",
+  },
+]
+`;
+
+exports[`AddActivityForm module actions should dispatch "ADD_ACTIVITY_TYPE" with title "Test1" and id "1" 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "timestamp": 1522620000,
+    "title": "Test1",
+    "type": "logbook.AddActivityForm.ADD_ACTIVITY_TYPE",
+  },
+]
+`;

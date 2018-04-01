@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckList Reducer should add 3 objects to activityTypes 1`] = `
+Object {
+  "1": Object {
+    "title": "Test 1",
+  },
+  "2": Object {
+    "title": "Test 2",
+  },
+  "3": Object {
+    "title": "Test 3",
+  },
+}
+`;
+
+exports[`CheckList Reducer should remove all elements and return empty array 1`] = `
+Object {
+  "1": Object {
+    "title": "Test 1",
+  },
+  "2": Object {
+    "title": "Test 2",
+  },
+}
+`;
+
+exports[`CheckList Reducer should remove object "1" from "activityTypes" 1`] = `
+Object {
+  "2": Object {
+    "title": "Test 2",
+  },
+}
+`;
+
+exports[`CheckList Reducer should return object with empty activityTypes 1`] = `null`;

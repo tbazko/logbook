@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckList Reducer should return 0 as activeDateTimestamp 1`] = `0`;
+
+exports[`CheckList Reducer should set activeDateTimestamp to "active-timestamp" 1`] = `"active-timestamp"`;

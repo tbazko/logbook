@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import checkListReducer from 'modules/checkList/reducer'
+import * as reducers from 'reducers'
 
 const rootReducer = combineReducers({
-  checkList: checkListReducer,
+  activityTypes: reducers.activityTypes,
+  historicalActivityTypes: reducers.historicalActivityTypes,
+  validationError: reducers.validationError,
+  activityLogs: reducers.activityLogs,
+  activeDateTimestamp: reducers.activeDateTimestamp,
 })
 
 export default rootReducer
