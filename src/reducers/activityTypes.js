@@ -1,16 +1,16 @@
-import _ from 'lodash';
+import _ from 'lodash'
 import * as types from 'types'
 
 const initialState = null
 
 export default (state = initialState, action) => {
-  const { type } = action;
+  const { type } = action
 
   switch (type) {
     case types.AddActivityForm.ADD_ACTIVITY_TYPE:
       return {
         ...state,
-        [action.id]: { title: action.title },
+        [action.id]: { title: action.title, createdAt: action.createdAt },
       }
     case types.ActivityCheckList.REMOVE_LIST_ITEM:
       return {
@@ -23,4 +23,4 @@ export default (state = initialState, action) => {
     default:
       return state
   }
-};
+}

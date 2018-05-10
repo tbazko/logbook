@@ -29,25 +29,23 @@ describe('Charts selectors', () => {
 
   it('should return empty object if there is no data available', () => {
     const initialState = {
-      activities: {
-        activityTypes: null,
-        activityLogs: null,
-      },
+      activityTypes: null,
+      activityLogs: null,
     }
     expect(s.getCompletedPerWeek(initialState)).toEqual({})
   })
 
   it('should return data ready for the chart, completed times per week for specific activity', () => {
     expect(s.getCompletedPerWeek(state).Sport).toEqual([
-      { week: '5', completed: 2 },
-      { week: '6', completed: 5 },
-      { week: '7', completed: 0 },
+      { week: '29 Jan - 4 Feb', completed: 2 },
+      { week: '5 - 11 Feb', completed: 5 },
+      { week: '12 - 18 Feb', completed: 0 },
     ])
 
     expect(s.getCompletedPerWeek(state)['Just Added Activity']).toEqual([
-      { week: '5', completed: 0 },
-      { week: '6', completed: 0 },
-      { week: '7', completed: 0 },
+      { week: '29 Jan - 4 Feb', completed: 0 },
+      { week: '5 - 11 Feb', completed: 0 },
+      { week: '12 - 18 Feb', completed: 0 },
     ])
   })
 })

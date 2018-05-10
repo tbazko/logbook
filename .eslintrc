@@ -18,7 +18,7 @@
     }
   },
   "rules": {
-    "semi": 0,
+    "semi": ["error", "never", { "beforeStatementContinuationChars": "never"}],
     "no-unused-vars": ["warn"],
     "react/jsx-filename-extension": 0,
     "no-underscore-dangle": ["off"],

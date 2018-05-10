@@ -3,7 +3,7 @@ import * as types from 'types'
 const initialState = null
 
 export default (state = initialState, action) => {
-  const { type } = action;
+  const { type } = action
 
   switch (type) {
     case types.AddActivityForm.ADD_ACTIVITY_ERROR:
@@ -17,4 +17,4 @@ export default (state = initialState, action) => {
     default:
       return state
   }
-};
+}

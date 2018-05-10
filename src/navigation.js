@@ -8,28 +8,29 @@ import listIcoSrc from 'static/images/list.png'
 import statsIcoSrc from 'static/images/stats.png'
 import calendarIcoSrc from 'static/images/calendar.png'
 
-const tabs = [{
-  label: 'Check list',
-  icon: listIcoSrc,
-  ...HOME_SCREEN,
-}, {
-  label: 'Calendars',
-  icon: calendarIcoSrc,
-  ...CALENDAR_SCREEN,
-}, {
-  label: 'Statistics',
-  icon: statsIcoSrc,
-  ...CHART_SCREEN,
-}]
+const tabs = [
+  {
+    label: 'Check list',
+    icon: listIcoSrc,
+    ...HOME_SCREEN,
+  }, {
+    label: 'Calendars',
+    icon: calendarIcoSrc,
+    ...CALENDAR_SCREEN,
+  }, {
+    label: 'Statistics',
+    icon: statsIcoSrc,
+    ...CHART_SCREEN,
+  }]
 
 export const startTabBasedApp = () => Navigation.startTabBasedApp({
   tabs,
   animationType: 'fade',
   tabsStyle: {
     tabBarShowLabels: 'hidden',
-    tabBarButtonColor: THEME.textOnPrimary,
-    tabBarBackgroundColor: '#000000',
-    navBarButtonColor: '#000000',
+    tabBarButtonColor: THEME.textOnDark,
+    tabBarBackgroundColor: THEME.primaryDark,
+    navBarButtonColor: '#ffffff',
     tabBarSelectedButtonColor: THEME.primary,
   },
   appStyle: {
@@ -37,7 +38,7 @@ export const startTabBasedApp = () => Navigation.startTabBasedApp({
     forceTitlesDisplay: true,
     topBarElevationShadowEnabled: false,
     tabBarButtonColor: '#000000',
-    tabBarBackgroundColor: THEME.textOnPrimary,
+    tabBarBackgroundColor: THEME.textOnDark,
     navBarButtonColor: '#000000',
     tabBarSelectedButtonColor: THEME.primary,
   },

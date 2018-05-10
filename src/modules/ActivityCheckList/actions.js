@@ -1,7 +1,7 @@
 import * as types from 'types'
 
-export const toggleItemCheckbox = (id, timestamp) =>
-  ({ type: types.ActivityCheckList.TOGGLE_ITEM_CHECKBOX, id, timestamp })
+export const toggleItemCheckbox = (id, createdAt) =>
+  ({ type: types.ActivityCheckList.TOGGLE_ITEM_CHECKBOX, id, createdAt })
 
 export const removeListItem = (id, activityType) =>
   ({ type: types.ActivityCheckList.REMOVE_LIST_ITEM, id, activityType })

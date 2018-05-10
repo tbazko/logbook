@@ -1,10 +1,10 @@
-import _ from 'lodash';
+import _ from 'lodash'
 import * as types from 'types'
 
 const initialState = null
 
 export default (state = initialState, action) => {
-  const { type } = action;
+  const { type } = action
 
   switch (type) {
     case types.ActivityCheckList.REMOVE_LIST_ITEM:
@@ -15,4 +15,4 @@ export default (state = initialState, action) => {
     default:
       return state
   }
-};
+}

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`activeLogTimestamp reducer should return 0 as activeLogTimestamp 1`] = `0`
+
+exports[`activeLogTimestamp reducer should set activeLogTimestamp to "active-timestamp" 1`] = `"active-timestamp"`

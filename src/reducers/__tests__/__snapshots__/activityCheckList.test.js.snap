@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`activityCheckList reducer should return "default" as activityCheckList.viewMode 1`] = `
+Object {
+  "viewMode": "default",
+}
+`
+
+exports[`activityCheckList reducer should return "delete" as activityCheckList.viewMode 1`] = `
+Object {
+  "viewMode": "delete",
+}
+`
+
+exports[`activityCheckList reducer should return "edit" as activityCheckList.viewMode 1`] = `
+Object {
+  "viewMode": "edit",
+}
+`

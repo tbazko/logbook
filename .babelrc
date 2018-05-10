@@ -17,7 +17,9 @@
           "store": "./src/store",
           "app": "./src/app",
           "storeMocks": "./src/storeMocks",
-          "reducers": "./src/reducers"
+          "reducers": "./src/reducers",
+          "theme": "./native-base-theme",
+          "selectors": "./src/selectors"
         }
       }
     ]

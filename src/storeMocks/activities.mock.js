@@ -200,5 +200,5 @@ export default {
       },
     },
   },
-  activeDateTimestamp: 1518303600,
+  activeLogTimestamp: 1518303600,
 }

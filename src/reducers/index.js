@@ -3,7 +3,8 @@ import activityLogs from './activityLogs'
 import historicalActivityTypes from './historicalActivityTypes'
 import error from './error'
 import validationError from './validationError'
-import activeDateTimestamp from './activeDateTimestamp'
+import activeLogTimestamp from './activeLogTimestamp'
+import activityCheckList from './activityCheckList'
 
 export {
   activityTypes,
@@ -11,5 +12,6 @@ export {
   historicalActivityTypes,
   error,
   validationError,
-  activeDateTimestamp,
+  activeLogTimestamp,
+  activityCheckList,
 }

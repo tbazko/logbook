@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Container,
   Header,
@@ -19,7 +19,7 @@ export const ADD_LIST_ITEM_SCREEN = {
   navigatorStyle: {
     navBarHidden: true,
   },
-};
+}
 
 export default function AddListItemScreen(props) {
   return (

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddActivityForm actions should dispatch SET_VIEW_MODE with "delete" 1`] = `
+Array [
+  Object {
+    "type": "logbook.ActivityCheckListHeader.SET_VIEW_MODE",
+    "viewMode": "delete",
+  },
+]
+`
+
+exports[`AddActivityForm actions should dispatch SET_VIEW_MODE with "edit" 1`] = `
+Array [
+  Object {
+    "type": "logbook.ActivityCheckListHeader.SET_VIEW_MODE",
+    "viewMode": "edit",
+  },
+]
+`
+
+exports[`AddActivityForm actions should dispatch SHOW_NEXT_DATE with timestamp and activityTypes object 1`] = `
+Array [
+  Object {
+    "activityTypes": Object {
+      "Sport-Id": Object {
+        "title": "Sport",
+      },
+    },
+    "timestamp": 1518390000,
+    "type": "logbook.ActivityCheckListHeader.SHOW_NEXT_DATE",
+  },
+]
+`
+
+exports[`AddActivityForm actions should dispatch SHOW_PREV_DATE with timestamp and activityTypes object 1`] = `
+Array [
+  Object {
+    "timestamp": 1518217200,
+    "type": "logbook.ActivityCheckListHeader.SHOW_PREV_DATE",
+  },
+]
+`

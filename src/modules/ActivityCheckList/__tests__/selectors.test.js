@@ -1,7 +1,7 @@
-import activities from 'storeMocks/activities.mock'
+import activityTypes from 'storeMocks/activities.mock'
 import * as s from '../selectors'
 
-describe('CheckList selectors', () => {
+describe('ActivityCheckList selectors', () => {
   it('should return empty item list', () => {
     const initialState = {
       activityTypes: null,
@@ -10,8 +10,8 @@ describe('CheckList selectors', () => {
     expect(s.getActiveCheckList(initialState)).toEqual({ activities: [], timestamp: undefined })
   })
 
-  it('should select and return active activities', () => {
-    const state = activities
+  it('should select and return active checkList', () => {
+    const state = activityTypes
     expect(s.getActiveCheckList(state)).toEqual({
       timestamp: 1518303600,
       activities: [

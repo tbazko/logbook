@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Container,
   Header,
@@ -8,6 +8,7 @@ import {
   Right,
   Body,
 } from 'native-base'
+import ActivityCalendar from 'modules/ActivityCalendar'
 
 export const CALENDAR_SCREEN = {
   screen: 'stats.Calendars',
@@ -15,7 +16,7 @@ export const CALENDAR_SCREEN = {
   navigatorStyle: {
     navBarHidden: true,
   },
-};
+}
 
 export default function CalendarScreen() {
   return (
@@ -27,7 +28,9 @@ export default function CalendarScreen() {
         </Body>
         <Right />
       </Header>
-      <Content />
+      <Content>
+        <ActivityCalendar />
+      </Content>
     </Container>
   )
 }

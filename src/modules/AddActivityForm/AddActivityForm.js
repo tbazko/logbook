@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import OneInputForm from 'components/organisms/OneInputForm'
 import { addItem, addItemError } from './actions'
 import * as errors from './errors'
@@ -36,7 +36,7 @@ class AddActivityForm extends PureComponent {
 
   submit() {
     try {
-      this.validateTitle(this.state.title);
+      this.validateTitle(this.state.title)
       this.props.dispatchAddItem(this.state.title)
       this.setState({ title: '' })
     } catch (err) {
@@ -64,13 +64,13 @@ class AddActivityForm extends PureComponent {
   }
 
   isUniqueTitle(title, activityTypes) {
-    if (!activityTypes) return true;
+    if (!activityTypes) return true
     const hItems = _.keys(activityTypes).map(key => activityTypes[key])
     return !hItems.find(item => item.title.toLowerCase() === title.toLowerCase())
   }
 
   render() {
-    const { formError } = this.props;
+    const { formError } = this.props
     return (
       <OneInputForm
         error={_.get(formError, 'message', null)}
@@ -88,11 +88,11 @@ const mapStateToProps = state => ({
   formError: selectors.getAddItemFormError(state),
   historicalActivityTypes: selectors.getHistoricalActivityTypes(state),
   activityTypes: selectors.getActivityTypes(state),
-});
+})
 
 const mapDispatchToProps = {
   dispatchAddItem: addItem,
   dispatchAddItemError: addItemError,
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddActivityForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddActivityForm)

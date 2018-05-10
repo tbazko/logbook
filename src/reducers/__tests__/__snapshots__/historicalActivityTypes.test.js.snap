@@ -6,6 +6,6 @@ Object {
     "title": "Sport",
   },
 }
-`;
+`
 
-exports[`CheckList Reducer should return null for historicalActivityTypes 1`] = `null`;
+exports[`CheckList Reducer should return null for historicalActivityTypes 1`] = `null`

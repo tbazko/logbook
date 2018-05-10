@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import reducer from './reducer'
@@ -10,8 +10,8 @@ let persistor
 
 export function getConfiguredStore() {
   const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line no-undef
-  const middlewares = [thunk];
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose // eslint-disable-line no-undef
+  const middlewares = [thunk]
 
   const persistConfig = {
     key: 'root',
@@ -26,14 +26,14 @@ export function getConfiguredStore() {
         persistedReducer,
         undefined,
         composeEnhancers(applyMiddleware(...middlewares)),
-      );
+      )
 
-      persistor = persistStore(store, null, () => resolve({ store, persistor }));
-      // persistor.purge();
+      persistor = persistStore(store, null, () => resolve({ store, persistor }))
+      // persistor.purge()
     } catch (e) {
-      reject(e);
+      reject(e)
     }
-  });
+  })
 }
 
 export function getPersistor() {

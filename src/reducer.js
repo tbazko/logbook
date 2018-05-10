@@ -3,10 +3,11 @@ import * as reducers from 'reducers'
 
 const rootReducer = combineReducers({
   activityTypes: reducers.activityTypes,
+  activityCheckList: reducers.activityCheckList,
   historicalActivityTypes: reducers.historicalActivityTypes,
   validationError: reducers.validationError,
   activityLogs: reducers.activityLogs,
-  activeDateTimestamp: reducers.activeDateTimestamp,
+  activeLogTimestamp: reducers.activeLogTimestamp,
 })
 
 export default rootReducer

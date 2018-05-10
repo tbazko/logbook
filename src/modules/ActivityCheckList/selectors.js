@@ -1,25 +1,36 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
+import {
+  getActivityTypes,
+  getActivityLogs,
+  getActiveLogTimestamp,
+  getHistoricalActivityTypes,
+} from 'selectors'
 
-const getLogs = state => state.activityLogs
-export const getActiveCheckListId = state => state.activeDateTimestamp
-export const getActivityTypes = state => state.activityTypes
-const getHistoricalItems = state => state.historicalActivityTypes
+export const getActiveCheckListId = state => getActiveLogTimestamp(state)
 
 export const getActiveCheckList = createSelector(
-  [getLogs, getActiveCheckListId, getActivityTypes, getHistoricalItems],
-  (activityLogs, activeDateTimestamp, activityTypes, historicalActivityTypes) => {
-    const activeCheckList = { timestamp: activeDateTimestamp, activities: [] };
-    if (!activityLogs || !activityLogs[activeDateTimestamp]) return activeCheckList;
+  [getActivityLogs, getActiveLogTimestamp, getActivityTypes, getHistoricalActivityTypes],
+  (activityLogs, activeLogTimestamp, activityTypes, historicalActivityTypes) => {
+    const activeCheckList = { timestamp: activeLogTimestamp, activities: [] }
+    if (!activityLogs || !activityLogs[activeLogTimestamp]) return activeCheckList
 
-    Object.keys(activityLogs[activeDateTimestamp]).forEach((itemId) => {
+    Object.keys(activityLogs[activeLogTimestamp]).forEach((itemId) => {
       activeCheckList.activities.push({
         id: itemId,
-        title: _.get(activityTypes[itemId], 'title', false) || _.get(historicalActivityTypes[itemId], 'title', false) || 'Unknown',
-        completed: activityLogs[activeDateTimestamp][itemId].completed,
-        isHistorical: Boolean(_.get(historicalActivityTypes[itemId], 'title', false)),
+        title: _.get(activityTypes, `[${itemId}].title`, false) || _.get(historicalActivityTypes, `[${itemId}].title`, false) || 'Unknown',
+        completed: activityLogs[activeLogTimestamp][itemId].completed,
+        isHistorical: Boolean(_.get(historicalActivityTypes, `[${itemId}].title`, false)),
       })
     })
     return activeCheckList
   },
 )
+
+export {
+  getActivityTypes,
+  getActivityLogs,
+  getActiveLogTimestamp,
+  getHistoricalActivityTypes,
+  getCheckListMode,
+} from 'selectors'

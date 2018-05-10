@@ -9,4 +9,4 @@ async function init() {
   startTabBasedApp()
 }
 
-init();
+init()

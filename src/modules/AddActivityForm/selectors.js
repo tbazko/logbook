@@ -1,3 +1,4 @@
-export const getAddItemFormError = state => state.validationError
-export const getActivityTypes = state => state.activityTypes
-export const getHistoricalActivityTypes = state => state.historicalActivityTypes
+import { getValidationError } from 'selectors'
+
+export const getAddItemFormError = state => getValidationError(state)
+export { getActivityTypes, getHistoricalActivityTypes } from 'selectors'

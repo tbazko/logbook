@@ -1,6 +1,7 @@
-export const HomeHeader = {
-  SHOW_NEXT_DATE: 'logbook.HomeHeader.SHOW_NEXT_DATE',
-  SHOW_PREV_DATE: 'logbook.HomeHeader.SHOW_PREV_DATE',
+export const ActivityCheckListHeader = {
+  SHOW_NEXT_DATE: 'logbook.ActivityCheckListHeader.SHOW_NEXT_DATE',
+  SHOW_PREV_DATE: 'logbook.ActivityCheckListHeader.SHOW_PREV_DATE',
+  SET_VIEW_MODE: 'logbook.ActivityCheckListHeader.SET_VIEW_MODE',
 }
 
 export const AddActivityForm = {
