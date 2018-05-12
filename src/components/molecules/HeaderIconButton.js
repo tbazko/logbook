@@ -11,6 +11,7 @@ export default function HeaderIconButton(props) {
       <IconButton
         onPress={() => props.onPress()}
         iconName={props.iconName}
+        color={THEME.secondary }
       />
     </Side>
   )

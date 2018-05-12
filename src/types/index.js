@@ -18,3 +18,7 @@ export const ActivityCheckList = {
   CHECK_ALL: 'logbook.ActivityCheckList.CHECK_ALL',
   UNCHECK_ALL: 'logbook.ActivityCheckList.UNCHECK_ALL',
 }
+
+export const Debug = {
+  INSERT_DATA: 'logbook.Debug.INSERT_DATA',
+}

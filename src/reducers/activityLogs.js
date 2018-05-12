@@ -13,6 +13,11 @@ export default (state = initialState, action) => {
     case types.ActivityCheckListHeader.SHOW_NEXT_DATE:
     case types.ActivityCheckList.SET_DEFAULT_VALUES:
       return setCompletedToDefaultIfDoesNotExist(state, action)
+    case types.Debug.INSERT_DATA:
+      return {
+        ...state,
+        ...action.payload.activityLogs,
+      }
     default:
       return state
   }

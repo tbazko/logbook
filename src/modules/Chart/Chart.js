@@ -122,12 +122,6 @@ const styles = StyleSheet.create({
   },
 })
 
-const chartStyles = {
-  data: { fill: "tomato", opacity: 0.7 },
-  labels: { fontSize: 9 },
-  parent: { border: "1px solid #ccc" }
-}
-
 const mapStateToProps = state => ({
   completedPerWeek: selectors.getCompletedPerWeek(state),
 })

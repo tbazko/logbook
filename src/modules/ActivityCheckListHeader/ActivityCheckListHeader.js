@@ -9,6 +9,7 @@ import * as selectors from './selectors'
 
 const ActivityCheckListHeader = (props) => {
   const { isEditMode, isDeleteMode, timestamp, activityTypes } = props
+
   return (
     <Header>
       <HeaderIconButton
@@ -23,6 +24,7 @@ const ActivityCheckListHeader = (props) => {
         onShowPrevDate={() => props.dispatchShowPrevDate(timestamp)}
         onShowNextDate={() => props.dispatchShowNextDate(timestamp, activityTypes)}
         currentDate={moment.unix(timestamp).format('MMMM Do')}
+        isDisabledNext={props.timestamp === moment().startOf('day').unix()}
       />
       <HeaderIconButton
         side="right"

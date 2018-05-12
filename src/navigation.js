@@ -28,10 +28,12 @@ export const startTabBasedApp = () => Navigation.startTabBasedApp({
   animationType: 'fade',
   tabsStyle: {
     tabBarShowLabels: 'hidden',
-    tabBarButtonColor: THEME.textOnDark,
+    tabBarButtonColor: THEME.disabled,
+    tabBarLabelColor: THEME.disabled,
     tabBarBackgroundColor: THEME.primaryDark,
     navBarButtonColor: '#ffffff',
-    tabBarSelectedButtonColor: THEME.primary,
+    tabBarSelectedLabelColor: THEME.textOnDark,
+    tabBarSelectedButtonColor: THEME.textOnDark,
   },
   appStyle: {
     orientation: 'portrait',

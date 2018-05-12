@@ -5,7 +5,7 @@ import { Button, Icon } from 'native-base'
 export default function IconButton(props) {
   return (
     <Button transparent onPress={() => props.onPress()}>
-      <Icon name={props.iconName} />
+      <Icon name={props.iconName} style={{ color: props.color }} />
     </Button>
   )
 }
@@ -13,4 +13,9 @@ export default function IconButton(props) {
 IconButton.propTypes = {
   iconName: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  color: PropTypes.string,
+}
+
+IconButton.defaultProps = {
+  color: '#d0d0d0',
 }

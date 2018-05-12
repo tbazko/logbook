@@ -1,4 +1,4 @@
-import activityTypes from 'storeMocks/activities.mock'
+import state from 'storeMocks/activities.mock'
 import * as s from '../selectors'
 
 describe('ActivityCheckList selectors', () => {
@@ -11,7 +11,6 @@ describe('ActivityCheckList selectors', () => {
   })
 
   it('should select and return active checkList', () => {
-    const state = activityTypes
     expect(s.getActiveCheckList(state)).toEqual({
       timestamp: 1518303600,
       activities: [

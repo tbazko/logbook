@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity, StyleSheet, View } from 'react-native'
+import { THEME } from 'config'
 import {
   Button,
   Icon,
@@ -30,6 +31,7 @@ export default class CheckListItem extends PureComponent {
             <CheckBox
               onPress={() => this.props.onPress()}
               style={{ marginLeft: 3 }}
+              color={THEME.secondary}
               checked={this.props.checked}
             />
           </View>

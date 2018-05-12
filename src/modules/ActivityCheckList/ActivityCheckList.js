@@ -8,7 +8,7 @@ import CheckListItem from 'components/organisms/CheckListItem'
 import getTheme from 'theme/components'
 import material from 'theme/variables/material'
 import { ADD_LIST_ITEM_SCREEN } from 'screens/AddListItemScreen'
-import { StyleProvider, Text, Content } from 'native-base'
+import { StyleProvider, Content } from 'native-base'
 import * as actions from './actions'
 import * as selectors from './selectors'
 
@@ -18,7 +18,7 @@ class ActivityCheckList extends PureComponent {
   }
 
   static propTypes = {
-    activeCheckListId: PropTypes.number.isRequired,
+    activeChecklistTimestamp: PropTypes.number.isRequired,
     isDeleteMode: PropTypes.bool.isRequired,
     isEditMode: PropTypes.bool.isRequired,
     isDefaultMode: PropTypes.bool.isRequired,
@@ -38,19 +38,28 @@ class ActivityCheckList extends PureComponent {
     activityTypes: null,
   }
 
+  constructor(props) {
+    super(props)
+    this.todayTS = moment().startOf('day').unix()
+  }
+
   componentWillMount() {
-    this.initCurrentCheckList(this.props.activeCheckListId)
+    this.initCurrentCheckList(this.props.activeChecklistTimestamp)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.initCurrentCheckList(nextProps.activeCheckListId)
+    this.initCurrentCheckList(nextProps.activeChecklistTimestamp)
   }
 
   initCurrentCheckList(id) {
     if (id === 0) {
-      this.props.dispatchSetDefaultCheckboxValue(moment().startOf('day').unix(), this.props.checkList.activities)
-      this.props.dispatchSetActiveCheckList(moment().startOf('day').unix())
+      this.props.dispatchSetDefaultCheckboxValue(this.todayTS, this.props.checkList.activities)
+      this.props.dispatchSetActiveCheckList(this.todayTS)
     }
+  }
+
+  currentListIsToday() {
+    return this.props.activeChecklistTimestamp === this.todayTS
   }
 
   render() {
@@ -84,10 +93,12 @@ class ActivityCheckList extends PureComponent {
               }}
             />
           }
-          <TouchListItem
-            title="Add new goal"
-            onPress={() => this.props.navigator.push(ADD_LIST_ITEM_SCREEN)}
-          />
+          {this.currentListIsToday() &&
+            <TouchListItem
+              title="Add new goal"
+              onPress={() => this.props.navigator.push(ADD_LIST_ITEM_SCREEN)}
+            />
+          }
         </Content>
       </StyleProvider>
     )
@@ -95,7 +106,7 @@ class ActivityCheckList extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  activeCheckListId: selectors.getActiveCheckListId(state),
+  activeChecklistTimestamp: selectors.getActiveCheckListId(state),
   activityTypes: selectors.getActivityTypes(state),
   checkList: selectors.getActiveCheckList(state),
   isDeleteMode: selectors.getCheckListMode(state) === 'delete',

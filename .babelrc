@@ -22,6 +22,7 @@
           "selectors": "./src/selectors"
         }
       }
-    ]
+    ],
+    ["transform-class-properties"]
   ]
 }

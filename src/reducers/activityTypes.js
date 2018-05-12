@@ -20,6 +20,12 @@ export default (state = initialState, action) => {
     //   return state.map(item => ({ ...item, completed: true }))
     case types.ActivityCheckList.REMOVE_ALL:
       return initialState
+    case types.Debug.INSERT_DATA:
+      console.log(action.payload)
+      return {
+        ...state,
+        ...action.payload.activityTypes,
+      }
     default:
       return state
   }
