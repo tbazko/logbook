@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
       return {
         viewMode: action.viewMode,
       }
+    case types.DevTools.REMOVE_ALL_DATA:
+      return initialState
     default:
       return state
   }

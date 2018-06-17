@@ -18,13 +18,13 @@ class ActivityCheckList extends PureComponent {
   }
 
   static propTypes = {
-    activeChecklistTimestamp: PropTypes.number.isRequired,
+    activeChecklistTimestamp: PropTypes.string.isRequired,
     isDeleteMode: PropTypes.bool.isRequired,
     isEditMode: PropTypes.bool.isRequired,
     isDefaultMode: PropTypes.bool.isRequired,
     checkList: PropTypes.shape({ // eslint-disable-line
       activities: PropTypes.arrayOf(PropTypes.object),
-      timestamp: PropTypes.number.isRequired,
+      timestamp: PropTypes.string.isRequired,
     }).isRequired,
     activityTypes: PropTypes.object,
     dispatchToggleItemCheckbox: PropTypes.func.isRequired,
@@ -40,7 +40,7 @@ class ActivityCheckList extends PureComponent {
 
   constructor(props) {
     super(props)
-    this.todayTS = moment().startOf('day').unix()
+    this.todayTS = moment().startOf('day').format()
   }
 
   componentWillMount() {
@@ -80,6 +80,7 @@ class ActivityCheckList extends PureComponent {
 
                 return (
                   <CheckListItem
+                    item={item}
                     bgColor={index % 2 === 0 ? '#fafafa' : '#f1f1f1'}
                     title={item.title}
                     checked={item.completed}

@@ -1,76 +1,93 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity, StyleSheet, View } from 'react-native'
+import { ActivityForm, EditActivityForm } from 'modules/ActivityForm'
 import { THEME } from 'config'
 import {
   Button,
   Icon,
   CheckBox,
   Text,
-  Form,
-  Item,
-  Input,
+  SwipeRow,
 } from 'native-base'
 
 export default class CheckListItem extends PureComponent {
   constructor(props) {
     super(props)
+    this.selectedRow = null
+    this.component = []
     this.state = {
-      editedTitle: this.props.title,
+      isEditMode: false,
     }
+    this.editActivityForm = new EditActivityForm(this.props.item.id)
   }
+
   render() {
-    const { editedTitle } = this.state
+    const { isEditMode } = this.state
     return (
-      <TouchableOpacity
-        onPress={() => this.props.onPress()}
-        style={[styles.touchContainer, { backgroundColor: this.props.bgColor }]}
-      >
-        {!this.props.isEditMode &&
-          <View style={styles.checkboxContainer}>
-            <CheckBox
-              onPress={() => this.props.onPress()}
-              style={{ marginLeft: 3 }}
-              color={THEME.secondary}
-              checked={this.props.checked}
-            />
-          </View>
-        }
-        {!this.props.isEditMode &&
-          <View style={styles.body}>
-            <Text>{this.props.title}</Text>
-          </View>
-        }
-        {this.props.isEditMode &&
-          <Form style={styles.form}>
-            <Item regular>
-              <Input
-                style={styles.input}
-                placeholder="Type new name"
-                onChangeText={title => this.setState({ editedTitle: title })}
-                value={editedTitle}
+      <SwipeRow
+        ref={(c) => { this.component[this.props.item.key] = c }}
+        style={{
+          paddingTop: 0,
+          paddingBottom: 0,
+          paddingRight: 0,
+          paddingLeft: 0,
+        }}
+        rightOpenValue={-150}
+        disableRightSwipe
+        onRowOpen={() => {
+          if (this.selectedRow && this.selectedRow !== this.component[this.props.item.key]) { this.selectedRow._root.closeRow(); }
+          this.selectedRow = this.component[this.props.item.key]
+        }}
+        body={
+          <TouchableOpacity
+            onPress={() => this.props.onPress()}
+            style={[styles.touchContainer, { backgroundColor: this.props.bgColor }]}
+          >
+
+            <View style={styles.checkboxContainer}>
+              <CheckBox
+                onPress={() => this.props.onPress()}
+                style={{ marginLeft: 3 }}
+                color={THEME.secondary}
+                checked={this.props.checked}
               />
-            </Item>
-          </Form>
+            </View>
+            <View style={styles.body}>
+              <Text style={{ alignSelf: 'flex-start' }}>{this.props.title}</Text>
+            </View>
+            <ActivityForm formType={this.editActivityForm} />
+          </TouchableOpacity>
         }
-        {this.props.isDeleteMode &&
-          <Button full danger onPress={() => this.props.onDelete()} style={styles.deleteBtn}>
-            <Icon active name="trash" />
-          </Button>
+        right={
+          <View style={styles.buttonsContainer}>
+            <Button
+              style={styles.button}
+              warning
+              onPress={() => {
+                this.setState({ isEditMode: true })
+                this.selectedRow._root.closeRow()
+              }}
+            >
+              <Icon active name="ios-create" />
+            </Button>
+            <Button style={styles.button} danger onPress={() => this.props.onDelete()}>
+              <Icon active name="trash" />
+            </Button>
+          </View>
         }
-      </TouchableOpacity>
+      />
     )
   }
 }
 
 CheckListItem.propTypes = {
+  item: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   onPress: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   bgColor: PropTypes.string,
-  isDeleteMode: PropTypes.bool.isRequired,
-  isEditMode: PropTypes.bool.isRequired,
 }
 
 CheckListItem.defaultProps = {
@@ -84,6 +101,11 @@ const styles = StyleSheet.create({
     height: 70,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 70,
   },
   checkboxContainer: {
     flex: 1,
@@ -100,7 +122,7 @@ const styles = StyleSheet.create({
   body: {
     flex: 5,
   },
-  deleteBtn: {
+  button: {
     height: 70,
     width: 70,
     shadowColor: 'transparent',

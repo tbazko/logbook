@@ -1,3 +1,4 @@
+import moment from 'moment'
 import state from 'storeMocks/activities.mock'
 import * as s from '../selectors'
 
@@ -12,7 +13,7 @@ describe('ActivityCheckList selectors', () => {
 
   it('should select and return active checkList', () => {
     expect(s.getActiveCheckList(state)).toEqual({
-      timestamp: 1518303600,
+      timestamp: moment.unix(1518303600).format(),
       activities: [
         {
           id: 'Sport-Id',

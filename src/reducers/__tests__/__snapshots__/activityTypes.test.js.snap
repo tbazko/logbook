@@ -15,9 +15,20 @@ Object {
     "title": "Test 3",
   },
 }
-`
+`;
 
-exports[`activityTypes reducer should remove all elements and return null 1`] = `null`
+exports[`activityTypes reducer should change title to "Edited title" instead of "Test 1" 1`] = `
+Object {
+  "1": Object {
+    "title": "Edited title",
+  },
+  "2": Object {
+    "title": "Test 2",
+  },
+}
+`;
+
+exports[`activityTypes reducer should remove all elements and return null 1`] = `null`;
 
 exports[`activityTypes reducer should remove object "1" from "activityTypes" 1`] = `
 Object {
@@ -25,6 +36,6 @@ Object {
     "title": "Test 2",
   },
 }
-`
+`;
 
-exports[`activityTypes reducer should return object with empty activityTypes 1`] = `null`
+exports[`activityTypes reducer should return object with empty activityTypes 1`] = `null`;

@@ -13,17 +13,17 @@ describe('activityTypes reducer', () => {
 
   it('should add 3 objects to activityTypes', () => {
     let state = reducer(initialState, {
-      type: types.AddActivityForm.ADD_ACTIVITY_TYPE,
+      type: types.ActivityForm.ADD_ACTIVITY_TYPE,
       id: '1',
       title: 'Test 1',
     })
     state = reducer(state, {
-      type: types.AddActivityForm.ADD_ACTIVITY_TYPE,
+      type: types.ActivityForm.ADD_ACTIVITY_TYPE,
       id: '2',
       title: 'Test 2',
     })
     state = reducer(state, {
-      type: types.AddActivityForm.ADD_ACTIVITY_TYPE,
+      type: types.ActivityForm.ADD_ACTIVITY_TYPE,
       id: '3',
       title: 'Test 3',
     })
@@ -42,6 +42,17 @@ describe('activityTypes reducer', () => {
   it('should remove all elements and return null', () => {
     const state = reducer({ 1: { title: 'Test 1' }, 2: { title: 'Test 2' } }, {
       type: types.ActivityCheckList.REMOVE_ALL,
+    })
+    expect(state).toMatchSnapshot()
+  })
+
+  it('should change title to "Edited title" instead of "Test 1"', () => {
+    const state = reducer({ 1: { title: 'Test 1' }, 2: { title: 'Test 2' } }, {
+      type: types.ActivityCheckList.EDIT_ACTIVITY_TYPE,
+      id: '1',
+      payload: {
+        title: 'Edited title',
+      },
     })
     expect(state).toMatchSnapshot()
   })

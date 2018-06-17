@@ -54,7 +54,7 @@ function filterCompletedPerTimePeriod(id, timestamps, activityLogs) {
 function groupByWeek(logTimestamps) {
   const groupedByWeek = {}
   logTimestamps.forEach((timestamp) => {
-    const weekNumber = moment.unix(timestamp).week()
+    const weekNumber = moment(timestamp).week()
     if (!groupedByWeek[weekNumber]) groupedByWeek[weekNumber] = []
     return groupedByWeek[weekNumber].push(timestamp)
   })

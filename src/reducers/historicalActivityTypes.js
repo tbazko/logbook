@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
         ...state,
         [action.id]: action.activityType,
       }
+    case types.DevTools.REMOVE_ALL_DATA:
+      return initialState
     default:
       return state
   }

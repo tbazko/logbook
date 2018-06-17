@@ -4,9 +4,10 @@ export const ActivityCheckListHeader = {
   SET_VIEW_MODE: 'logbook.ActivityCheckListHeader.SET_VIEW_MODE',
 }
 
-export const AddActivityForm = {
-  ADD_ACTIVITY_TYPE: 'logbook.AddActivityForm.ADD_ACTIVITY_TYPE',
-  ADD_ACTIVITY_ERROR: 'logbook.ADD_ACTIVITY_ERROR',
+export const ActivityForm = {
+  ADD_ACTIVITY_TYPE: 'logbook.ActivityForm.ADD_ACTIVITY_TYPE',
+  ADD_ACTIVITY_ERROR: 'logbook.ActivityForm.ADD_ACTIVITY_ERROR',
+  EDIT_ACTIVITY_TYPE: 'logbook.ActivityForm.EDIT_ACTIVITY_TYPE',
 }
 
 export const ActivityCheckList = {
@@ -19,6 +20,7 @@ export const ActivityCheckList = {
   UNCHECK_ALL: 'logbook.ActivityCheckList.UNCHECK_ALL',
 }
 
-export const Debug = {
-  INSERT_DATA: 'logbook.Debug.INSERT_DATA',
+export const DevTools = {
+  INSERT_DATA: 'logbook.DevTools.INSERT_DATA',
+  REMOVE_ALL_DATA: 'logbook.DevTools.REMOVE_ALL_DATA',
 }

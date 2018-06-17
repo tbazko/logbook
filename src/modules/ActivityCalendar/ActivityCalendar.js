@@ -16,21 +16,23 @@ class ActivityCalendar extends PureComponent {
 
   static propTypes = {
     successDatesPerType: PropTypes.object,
-    earliestTimestamp: PropTypes.number,
+    earliestTimestamp: PropTypes.string,
     activityTypes: PropTypes.object,
   }
 
   static defaultProps = {
     successDatesPerType: null,
-    earliestTimestamp: moment.unix(),
+    earliestTimestamp: moment().format(),
     activityTypes: null,
   }
 
   constructor(props) {
     super(props)
+    const { activityTypes } = this.props
+    const firstKey = activityTypes ? Object.keys(activityTypes)[0] : false
     this.state = {
       dateString: moment().format('YYYY-MM-DD'),
-      activityTypeId: this.props.activityTypes[Object.keys(this.props.activityTypes)[0]],
+      activityTypeId: firstKey,
     }
   }
 
@@ -48,32 +50,34 @@ class ActivityCalendar extends PureComponent {
     const { activityTypes } = this.props
     return (
       <Content>
-        <Form style={{
-          flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20, marginTop: 20,
-        }}
-        >
-          <Picker
-            textStyle={{ color: THEME.textOnPrimary }}
-            style={{
-              backgroundColor: THEME.primary,
-              height: 40,
-            }}
-            mode="dropdown"
-            placeholder="Select One"
-            selectedValue={this.state.activityTypeId}
-            onValueChange={value => this.onValueChange(value)}
+        {activityTypes &&
+          <Form style={{
+            flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20, marginTop: 20,
+          }}
           >
-            {Object.keys(activityTypes).map(id =>
-              <Item label={activityTypes[id].title} value={id} key={id} />)}
-          </Picker>
-        </Form>
+            <Picker
+              textStyle={{ color: THEME.textOnPrimary }}
+              style={{
+                backgroundColor: THEME.primary,
+                height: 40,
+              }}
+              mode="dropdown"
+              placeholder="Select One"
+              selectedValue={this.state.activityTypeId}
+              onValueChange={value => this.onValueChange(value)}
+            >
+              {Object.keys(activityTypes).map(id =>
+                <Item label={activityTypes[id].title} value={id} key={id} />)}
+            </Picker>
+          </Form>
+        }
         <Calendar
           markedDates={this.getMarkedDates()}
           markingType="custom"
           // Initially visible month. Default = Date()
           current={this.state.dateString}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-          minDate={moment.unix(this.props.earliestTimestamp).format('YYYY-MM-DD')}
+          minDate={moment(this.props.earliestTimestamp).format('YYYY-MM-DD')}
           // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
           maxDate={moment().endOf('month').format('YYYY-MM-DD')}
           // Handler which gets executed on day press. Default = undefined

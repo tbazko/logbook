@@ -1,9 +1,9 @@
-import { resetStore } from 'modules/debug'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Container, Button, Text } from 'native-base'
+import { Container, Footer } from 'native-base'
 import ActivityCheckList from 'modules/ActivityCheckList'
 import ActivityCheckListHeader from 'modules/ActivityCheckListHeader'
+import DevTools from 'modules/DevTools'
 
 export const HOME_SCREEN = {
   screen: 'stats.Home',
@@ -18,7 +18,9 @@ export default function HomeScreen(props) {
     <Container>
       <ActivityCheckListHeader />
       <ActivityCheckList navigator={props.navigator} />
-      <Button danger onPress={() => resetStore()}><Text>Reset store</Text></Button>
+      <Footer>
+        <DevTools />
+      </Footer>
     </Container>
   )
 }

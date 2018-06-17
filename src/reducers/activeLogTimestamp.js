@@ -1,6 +1,7 @@
 import * as types from 'types'
+import moment from 'moment'
 
-const initialState = 0
+const initialState = moment().startOf('day').format()
 
 export default (state = initialState, action) => {
   const { type } = action
@@ -10,6 +11,8 @@ export default (state = initialState, action) => {
     case types.ActivityCheckListHeader.SHOW_NEXT_DATE:
     case types.ActivityCheckList.SET_ACTIVE_CHECKLIST:
       return action.timestamp
+    case types.DevTools.REMOVE_ALL_DATA:
+      return initialState
     default:
       return state
   }

@@ -1,7 +1,7 @@
 import mockStore from 'redux-mock-store'
 import * as action from '../actions'
 
-describe('AddActivityForm actions', () => {
+describe('ActivityForm actions', () => {
   let store
 
   beforeEach(() => {

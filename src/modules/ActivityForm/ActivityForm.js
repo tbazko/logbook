@@ -2,19 +2,18 @@ import _ from 'lodash'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import OneInputForm from 'components/organisms/OneInputForm'
-import { addItem, addItemError } from './actions'
+import { addItemError } from './actions'
 import * as errors from './errors'
 import * as selectors from './selectors'
 
 
-class AddActivityForm extends PureComponent {
+class ActivityForm extends PureComponent {
   static navigatorStyle = {
     navBarHidden: true,
   }
 
   static propTypes = {
-    dispatchAddItem: PropTypes.func.isRequired,
+    formType: PropTypes.object.isRequired,
     dispatchAddItemError: PropTypes.func.isRequired,
     formError: PropTypes.object,
     historicalActivityTypes: PropTypes.object,
@@ -30,14 +29,14 @@ class AddActivityForm extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
+      title: null,
     }
   }
 
   submit() {
     try {
       this.validateTitle(this.state.title)
-      this.props.dispatchAddItem(this.state.title)
+      this.props.formType.submit(this)
       this.setState({ title: '' })
     } catch (err) {
       this.props.dispatchAddItemError(err)
@@ -70,17 +69,7 @@ class AddActivityForm extends PureComponent {
   }
 
   render() {
-    const { formError } = this.props
-    return (
-      <OneInputForm
-        error={_.get(formError, 'message', null)}
-        onSubmit={() => this.submit()}
-        placeholder="Activity Name"
-        submitButtonName="Add to Checklist"
-        title={this.state.title}
-        onChangeText={title => this.setState({ title })}
-      />
-    )
+    return this.props.formType.render(this)
   }
 }
 
@@ -91,8 +80,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  dispatchAddItem: addItem,
   dispatchAddItemError: addItemError,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddActivityForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityForm)

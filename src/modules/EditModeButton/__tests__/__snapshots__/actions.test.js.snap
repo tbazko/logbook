@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditModeButton actions should dispatch SET_VIEW_MODE with "delete" 1`] = `
+Array [
+  Object {
+    "type": "logbook.ActivityCheckListHeader.SET_VIEW_MODE",
+    "viewMode": "delete",
+  },
+]
+`;
+
+exports[`EditModeButton actions should dispatch SET_VIEW_MODE with "edit" 1`] = `
+Array [
+  Object {
+    "type": "logbook.ActivityCheckListHeader.SET_VIEW_MODE",
+    "viewMode": "edit",
+  },
+]
+`;

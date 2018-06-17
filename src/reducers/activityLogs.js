@@ -7,17 +7,19 @@ export default (state = initialState, action) => {
   const { type } = action
 
   switch (type) {
-    case types.AddActivityForm.ADD_ACTIVITY_TYPE:
+    case types.ActivityForm.ADD_ACTIVITY_TYPE:
     case types.ActivityCheckList.TOGGLE_ITEM_CHECKBOX:
       return toggleCompletedForOne(state, action)
     case types.ActivityCheckListHeader.SHOW_NEXT_DATE:
     case types.ActivityCheckList.SET_DEFAULT_VALUES:
       return setCompletedToDefaultIfDoesNotExist(state, action)
-    case types.Debug.INSERT_DATA:
+    case types.DevTools.INSERT_DATA:
       return {
         ...state,
         ...action.payload.activityLogs,
       }
+    case types.DevTools.REMOVE_ALL_DATA:
+      return initialState
     default:
       return state
   }

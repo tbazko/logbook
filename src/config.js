@@ -4,7 +4,7 @@ export const THEME = {
   disabled: '#d0d0d0',
   primary: '#E97778',
   primaryLight: '#89C7B6',
-  primaryDark: '#7998C9',
+  primaryDark: '#3F4F86',
   secondary: '#7998C9',
   success: '#89C7B6',
   warning: '#FFD57E',
@@ -13,4 +13,5 @@ export const THEME = {
   textOnDark: '#FFFFFF',
   textOnSuccess: '#FFFFFF',
   textOnDanger: '#FFFFFF',
+  inactiveOnDark: '#9FBACC',
 }

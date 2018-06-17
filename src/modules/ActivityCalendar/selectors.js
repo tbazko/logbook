@@ -3,7 +3,7 @@ import moment from 'moment'
 import { createSelector } from 'reselect'
 import { getActivityLogs } from 'selectors'
 
-export const getEarliestTimestamp = state => (parseFloat(_.keys(getActivityLogs(state))[0]))
+export const getEarliestTimestamp = state => (_.keys(getActivityLogs(state))[0])
 
 let successStyles
 export function setStylesForSuccessDates(styles) {
@@ -21,7 +21,7 @@ export const getSuccessDates = createSelector(
         if (logItems[item].completed) {
           sorted[item] = {
             ...sorted[item],
-            [moment.unix(log).format('YYYY-MM-DD')]: successStyles,
+            [moment(log).format('YYYY-MM-DD')]: successStyles,
           }
         }
       })

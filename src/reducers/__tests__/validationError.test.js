@@ -13,14 +13,14 @@ describe('CheckList Reducer', () => {
 
   it('should reset to initial state (null)', () => {
     const state = reducer({ message: 'Some error' }, {
-      type: types.AddActivityForm.ADD_ACTIVITY_TYPE,
+      type: types.ActivityForm.ADD_ACTIVITY_TYPE,
     })
     expect(state).toMatchSnapshot()
   })
 
   it('should add "Test error" error', () => {
     const state = reducer(initialState, {
-      type: types.AddActivityForm.ADD_ACTIVITY_ERROR,
+      type: types.ActivityForm.ADD_ACTIVITY_ERROR,
       error: { message: 'Test error' },
     })
     expect(state).toMatchSnapshot()

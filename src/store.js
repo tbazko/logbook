@@ -29,7 +29,6 @@ export function getConfiguredStore() {
       )
 
       persistor = persistStore(store, null, () => resolve({ store, persistor }))
-      // persistor.purge()
     } catch (e) {
       reject(e)
     }
@@ -43,5 +42,10 @@ export function getPersistor() {
 
 export function getState() {
   if (store) return store.getState()
+  throw new Error('Store does not exist')
+}
+
+export function getStore() {
+  if (store) return store
   throw new Error('Store does not exist')
 }

@@ -11,7 +11,7 @@ import {
   Body,
   Icon,
 } from 'native-base'
-import AddActivityForm from 'modules/AddActivityForm'
+import { ActivityForm, AddActivityForm } from 'modules/ActivityForm'
 
 export const ADD_LIST_ITEM_SCREEN = {
   screen: 'stats.AddListItem',
@@ -36,7 +36,7 @@ export default function AddListItemScreen(props) {
         <Right />
       </Header>
       <Content>
-        <AddActivityForm />
+        <ActivityForm formType={new AddActivityForm()} />
       </Content>
     </Container>
   )

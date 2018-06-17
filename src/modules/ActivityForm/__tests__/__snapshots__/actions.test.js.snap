@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivityForm actions should dispatch "ADD_ACTIVITY_ERROR" with error 1`] = `
+Array [
+  Object {
+    "error": [Error],
+    "type": "logbook.ADD_ACTIVITY_ERROR",
+  },
+]
+`;
+
+exports[`ActivityForm actions should dispatch "ADD_ACTIVITY_TYPE" with title "Test1" and id "1" 1`] = `
+Array [
+  Object {
+    "createdAt": "2018-05-13T00:00:00+02:00",
+    "id": "1",
+    "title": "Test1",
+    "type": "logbook.ActivityForm.ADD_ACTIVITY_TYPE",
+  },
+]
+`;
