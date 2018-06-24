@@ -12,8 +12,8 @@ export default (state = initialState, action) => {
         message: action.error.message,
         ...action.error,
       }
+    case types.ActivityForm.REMOVE_ACTIVITY_ERROR:
     case types.ActivityForm.ADD_ACTIVITY_TYPE:
-      return initialState
     case types.DevTools.REMOVE_ALL_DATA:
       return initialState
     default:

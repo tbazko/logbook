@@ -8,6 +8,7 @@ export const ActivityForm = {
   ADD_ACTIVITY_TYPE: 'logbook.ActivityForm.ADD_ACTIVITY_TYPE',
   ADD_ACTIVITY_ERROR: 'logbook.ActivityForm.ADD_ACTIVITY_ERROR',
   EDIT_ACTIVITY_TYPE: 'logbook.ActivityForm.EDIT_ACTIVITY_TYPE',
+  REMOVE_ACTIVITY_ERROR: 'logbook.ActivityForm.REMOVE_ACTIVITY_ERROR',
 }
 
 export const ActivityCheckList = {

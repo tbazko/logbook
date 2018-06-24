@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { StyleSheet } from 'react-native'
 import {
   Container,
   Button,
@@ -10,52 +11,46 @@ import {
 } from 'native-base'
 
 export default function OneInputForm(props) {
+  function renderInput(p) {
+    return (
+      <Input
+        placeholder={p.placeholder}
+        onChangeText={text => p.onChangeText(text)}
+        value={p.value}
+      />
+    )
+  }
+
+  function renderButtonName(p) {
+    return (<Text>{p.submitButtonName}</Text>)
+  }
+
+  const { style, inline } = props
+  const { inlineForm, errorText, flexOne } = styles
+
   return (
-    <Container
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-        height: 50,
-      }}
-    >
-      <Form style={{ flex: 1, flexDirection: 'row' }}>
-        <Item regular style={{ flex: 1 }}>
-          <Input
-            placeholder={props.placeholder}
-            onChangeText={text => props.onChangeText(text)}
-            value={props.value}
-          />
+    <Container style={style}>
+
+      <Form style={inline ? inlineForm : {}}>
+        <Item regular style={inline ? flexOne : {}}>
+          {renderInput(props)}
         </Item>
-        <Button onPress={() => props.onSubmit()} style={{ height: 50 }}>
-          <Text>{props.submitButtonName}</Text>
+        <Button full={!inline} onPress={() => props.onSubmit()}>
+          {renderButtonName(props)}
         </Button>
       </Form>
 
       {props.error &&
-        <Text>{props.error}</Text>
+        <Text style={errorText}>{props.error}</Text>
       }
+
+
     </Container>
-    // <Container style={props.style}>
-    //   <Form>
-    //     <Item regular>
-    //       <Input
-    //         placeholder={props.placeholder}
-    //         onChangeText={text => props.onChangeText(text)}
-    //         value={props.value}
-    //       />
-    //     </Item>
-    //   </Form>
-    //   <Button full onPress={() => props.onSubmit()}>
-    //     <Text>{props.submitButtonName}</Text>
-    //   </Button>
-    //   {props.error &&
-    //     <Text>{props.error}</Text>
-    //   }
-    // </Container>
   )
 }
 
 OneInputForm.propTypes = {
+  inline: PropTypes.bool,
   style: PropTypes.object,
   placeholder: PropTypes.string,
   onChangeText: PropTypes.func,
@@ -66,6 +61,7 @@ OneInputForm.propTypes = {
 }
 
 OneInputForm.defaultProps = {
+  inline: false,
   style: {},
   placeholder: 'Enter text',
   onChangeText: null,
@@ -73,3 +69,18 @@ OneInputForm.defaultProps = {
   submitButtonName: 'Submit',
   error: '',
 }
+
+const styles = StyleSheet.create({
+  inlineForm: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  errorText: {
+    color: 'red',
+    flex: 1,
+    flexDirection: 'column',
+  },
+  flexOne: {
+    flex: 1,
+  },
+})

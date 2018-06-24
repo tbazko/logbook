@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { THEME } from 'config'
 import { View, StyleSheet, Dimensions } from 'react-native'
@@ -10,7 +10,7 @@ import * as selectors from './selectors'
 
 const { Item } = Picker
 
-class Chart extends PureComponent {
+class Chart extends Component {
   static propTypes = {
     completedPerWeek: PropTypes.object,
   }
@@ -18,9 +18,8 @@ class Chart extends PureComponent {
   constructor(props) {
     super(props)
     const { completedPerWeek } = props
-    this.activityNames = _.keys(completedPerWeek)
     this.state = {
-      selected: this.activityNames[0],
+      selected: _.keys(completedPerWeek)[0],
     }
   }
 
@@ -52,7 +51,7 @@ class Chart extends PureComponent {
     return (
       <Content>
         <Form style={{
-          flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 50, marginTop: 20
+          flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 50, marginTop: 20,
         }}
         >
           <Picker
@@ -66,7 +65,7 @@ class Chart extends PureComponent {
             selectedValue={this.state.selected}
             onValueChange={value => this.onValueChange(value)}
           >
-            {this.activityNames.map(name => <Item label={name} value={name} key={name} />)}
+            {_.keys(completedPerWeek).map(name => <Item label={name} value={name} key={name} />)}
           </Picker>
         </Form>
         <View style={styles.container}>
@@ -90,12 +89,13 @@ class Chart extends PureComponent {
             <VictoryBar
               style={{
                 labels: {
-                  fontSize: 9,
+                  fontSize: 11,
                 },
                 data: {
                   fill: THEME.secondary,
                 },
               }}
+              labelComponent={<VictoryLabel angle={90} verticalAnchor="middle" textAnchor="end" />}
               labels={d => d.week}
               barRatio={0.6}
               data={data}
@@ -117,6 +117,7 @@ class Chart extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },

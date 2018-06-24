@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { FlatList } from 'react-native'
 import { TouchListItem } from 'components/molecules'
-import CheckListItem from 'components/organisms/CheckListItem'
+import CheckListItem from './CheckListItem'
 import getTheme from 'theme/components'
 import material from 'theme/variables/material'
 import { ADD_LIST_ITEM_SCREEN } from 'screens/AddListItemScreen'
@@ -62,9 +62,29 @@ class ActivityCheckList extends PureComponent {
     return this.props.activeChecklistTimestamp === this.todayTS
   }
 
-  render() {
+  renderCheckListItem(item, index) {
     const {
       checkList, activityTypes, isDeleteMode, isDefaultMode, isEditMode,
+    } = this.props
+
+    return (
+      <CheckListItem
+        item={item}
+        bgColor={index % 2 === 0 ? '#fafafa' : '#f1f1f1'}
+        title={item.title}
+        checked={item.completed}
+        isDeleteMode={isDeleteMode}
+        isEditMode={isEditMode}
+        isDefaultMode={isDefaultMode}
+        onDelete={() => this.props.dispatchRemoveListItem(item.id, activityTypes[item.id])}
+        onPress={() => this.props.dispatchToggleItemCheckbox(item.id, checkList.timestamp)}
+      />
+    )
+  }
+
+  render() {
+    const {
+      checkList, isDeleteMode, isDefaultMode, isEditMode,
     } = this.props
 
     return (
@@ -75,23 +95,7 @@ class ActivityCheckList extends PureComponent {
               data={checkList.activities}
               keyExtractor={item => item.id}
               extraData={[isDeleteMode, isEditMode, isDefaultMode]}
-              renderItem={({ item, index }) => {
-                if (item.isHistorical) return null
-
-                return (
-                  <CheckListItem
-                    item={item}
-                    bgColor={index % 2 === 0 ? '#fafafa' : '#f1f1f1'}
-                    title={item.title}
-                    checked={item.completed}
-                    isDeleteMode={isDeleteMode}
-                    isEditMode={isEditMode}
-                    isDefaultMode={isDefaultMode}
-                    onDelete={() => this.props.dispatchRemoveListItem(item.id, activityTypes[item.id])}
-                    onPress={() => this.props.dispatchToggleItemCheckbox(item.id, checkList.timestamp)}
-                  />
-                )
-              }}
+              renderItem={({ item, index }) => this.renderCheckListItem(item, index)}
             />
           }
           {this.currentListIsToday() &&

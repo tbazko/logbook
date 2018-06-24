@@ -21,3 +21,4 @@ export const setViewMode = viewMode => ({
 })
 
 export const addItemError = error => ({ type: types.ActivityForm.ADD_ACTIVITY_ERROR, error })
+export const removeItemError = () => ({ type: types.ActivityForm.REMOVE_ACTIVITY_ERROR })

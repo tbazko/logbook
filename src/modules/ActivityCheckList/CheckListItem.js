@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity, StyleSheet, View } from 'react-native'
-import { ActivityForm, EditActivityForm } from 'modules/ActivityForm'
+import { EditActivityForm } from 'modules/ActivityForms'
 import { THEME } from 'config'
 import {
   Button,
@@ -19,11 +19,11 @@ export default class CheckListItem extends PureComponent {
     this.state = {
       isEditMode: false,
     }
-    this.editActivityForm = new EditActivityForm(this.props.item.id)
   }
 
   render() {
     const { isEditMode } = this.state
+    if (this.props.item.isHistorical) return null
     return (
       <SwipeRow
         ref={(c) => { this.component[this.props.item.key] = c }}
@@ -45,18 +45,29 @@ export default class CheckListItem extends PureComponent {
             style={[styles.touchContainer, { backgroundColor: this.props.bgColor }]}
           >
 
-            <View style={styles.checkboxContainer}>
-              <CheckBox
-                onPress={() => this.props.onPress()}
-                style={{ marginLeft: 3 }}
-                color={THEME.secondary}
-                checked={this.props.checked}
+            {!isEditMode &&
+              <View style={styles.checkboxContainer}>
+                <CheckBox
+                  onPress={() => this.props.onPress()}
+                  style={{ marginLeft: 3 }}
+                  color={THEME.secondary}
+                  checked={this.props.checked}
+                />
+              </View>
+            }
+
+            {!isEditMode &&
+              <View style={styles.body}>
+                <Text style={{ alignSelf: 'flex-start' }}>{this.props.title}</Text>
+              </View>
+            }
+
+            {isEditMode &&
+              <EditActivityForm
+                onSubmitFinish={() => this.setState({ isEditMode: false })}
+                id={this.props.item.id}
               />
-            </View>
-            <View style={styles.body}>
-              <Text style={{ alignSelf: 'flex-start' }}>{this.props.title}</Text>
-            </View>
-            <ActivityForm formType={this.editActivityForm} />
+            }
           </TouchableOpacity>
         }
         right={
@@ -71,6 +82,7 @@ export default class CheckListItem extends PureComponent {
             >
               <Icon active name="ios-create" />
             </Button>
+
             <Button style={styles.button} danger onPress={() => this.props.onDelete()}>
               <Icon active name="trash" />
             </Button>
